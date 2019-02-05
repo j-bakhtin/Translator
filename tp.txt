@@ -1,3 +1,4 @@
-def func():
-	print('Hello, World')
+hello4
+goodbuy
+Jurij
 	

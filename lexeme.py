@@ -7,31 +7,57 @@ from builtins import str
 import sys
 
 
-# -*- Класс, описывающий лексему в формате <строка>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>] -*-
+
+# -*- РљР»Р°СЃСЃ, РѕРїРёСЃС‹РІР°СЋС‰РёР№ Р»РµРєСЃРµРјСѓ РІ С„РѕСЂРјР°С‚Рµ <СЃС‚СЂРѕРєР°>lex:<Р»РµРєСЃРµРјР°>[<С‚РёРї>:<СЂР°СЃРїРѕР·РЅР°РЅРЅРѕРµ_Р·РЅР°С‡РµРЅРёРµ>][val:<Р·РЅР°С‡РµРЅРёРµ>] -*-
 class Lexeme:
     def __init__(self, lineNumber, lexeme, recognizedValue, value):
         self.lineNumber = lineNumber
         self.lexeme = lexeme
-        self.type = type
         self.recognizedValue = recognizedValue
         self.value = value
     
-    # -*- Полное описание лексемы -*-
-    def description(self):
-        pass
-
-# -*- Лексический аналищатор. Принимает слово -*-
-def scanner(keyword):
-    pass
-
-
-# -*- Главная функция -*-
-def main(fp, fl):
-    input_file_programm = open(fp, 'r')
-    #output_file_lexems = open(fl, 'r')
     
-    print(input_file_programm.read())
-    #file_lexems.read()
+    # -*- РџРѕР»РЅРѕРµ РѕРїРёСЃР°РЅРёРµ Р»РµРєСЃРµРјС‹ -*-
+    def description(self):
+        return(self.lineNumber + 'lex:' + self.lexeme + ':'+self.recognizedValue + 'val:' + self.value) 
+    
+    
+# -*- РЎРёРјРІРѕР» РїСЂРёРЅР°РґР»РµР¶РёС‚ Рє РєР»Р°СЃСЃСѓ Р±СѓРєРІ -*-
+def isLetter(ch):
+    if (ch >= 'A' and ch <= 'Z') or (ch >= 'a' and ch <= 'z'):
+        return True
+    else:
+        return False
+
+
+# -*- Р›РµРєСЃРёС‡РµСЃРєРёР№ Р°РЅР°Р»РёР·Р°С‚РѕСЂ. РџСЂРёРЅРёРјР°РµС‚ РІС…РѕРґРЅСѓСЋ С†РµРїРѕС‡РєСѓ (СЃС‚СЂРѕРєСѓ С„Р°Р№Р»Р°)-*-
+def scanner(line):
+    lexeme = None
+    i = 0
+    s_i = 0
+    temp = ''
+    while i < len(line): 
+        if isLetter(line[i]):
+            temp = temp + line[i]
+            i += 1
+        else:
+            lexeme = Lexeme('1', 'id', 'type', temp)
+            break
+        
+    return lexeme;
+    
+    
+
+# -*- Р“Р»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ -*-
+def main(fp, fl):
+    with open(fp) as input_file_programm:
+    
+        lexems = []
+        for line in input_file_programm:
+            lexems.append(scanner(line))
+        
+        for lex in lexems:      
+            print(lex.description())
 
 
 if __name__ == '__main__':
