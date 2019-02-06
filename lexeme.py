@@ -22,9 +22,53 @@ class Lexeme:
         return(self.lineNumber + 'lex:' + self.lexeme + ':'+self.recognizedValue + 'val:' + self.value) 
     
     
-# -*- Символ принадлежит к классу букв -*-
+# -*- Определение принадлежности символа к классу букв -*-
 def isLetter(ch):
     if (ch >= 'A' and ch <= 'Z') or (ch >= 'a' and ch <= 'z'):
+        return True
+    else:
+        return False
+    
+# -*- Определение принадлежности символа к классу двоичных цифр -*-
+def isBin(ch):
+    if((ch == '0' or ch == '1')):
+        return True
+    else:
+        return False
+   
+# -*- Определение принадлежности символа к классу восьмиричных цифр -*- 
+def isOctal(ch):
+    if((ch >= '0' and ch <= '7')):
+        return True
+    else:
+        return False
+
+# -*- Определение принадлежности символа к классу десятичных цифр -*-
+def isDigit(ch):
+    if((ch >= '0' and ch <= '9')):
+        return True
+    else:
+        return False
+
+
+# -*- Определение принадлежности символа к классу шестнадцатеричныхцифр -*-
+def isHex(ch):
+    if((ch >= '0' and ch <= '9') or (ch >= 'A' and ch <= 'F') or (ch >= 'a' and ch <= 'f')):
+        return True
+    else:
+        return False
+    
+
+# -*-Определение принадлежности символа к классу пропусков -*-
+def isSkip(ch):
+    if(ch == ' ' or ch == '\t' or ch == '\n' or ch == '\f'):
+        return True
+    else:
+        return False
+
+# -*- Определяет принадлежность к классу игнорируемых символов -*-
+def isIgnore(ch):
+    if (ch > 0 and ch < ' ' and ch != '\t' and ch != '\n' and ch !='\f'):
         return True
     else:
         return False
@@ -53,7 +97,7 @@ def main(fp, fl):
     with open(fp) as input_file_programm:
     
         lexems = []
-        for line in input_file_programm:
+        for line, i in enumerate(input_file_programm):
             lexems.append(scanner(line))
         
         for lex in lexems:      
