@@ -7,7 +7,6 @@ from builtins import str
 import sys
 
 
-
 # -*- Класс, описывающий лексему в формате <строка>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>] -*-
 class Lexeme:
     def __init__(self, lineNumber, lexeme, recognizedValue, value):
@@ -28,13 +27,15 @@ def isLetter(ch):
         return True
     else:
         return False
-    
+
+  
 # -*- Определение принадлежности символа к классу двоичных цифр -*-
 def isBin(ch):
     if((ch == '0' or ch == '1')):
         return True
     else:
         return False
+
    
 # -*- Определение принадлежности символа к классу восьмиричных цифр -*- 
 def isOctal(ch):
@@ -42,6 +43,7 @@ def isOctal(ch):
         return True
     else:
         return False
+
 
 # -*- Определение принадлежности символа к классу десятичных цифр -*-
 def isDigit(ch):
@@ -74,34 +76,67 @@ def isIgnore(ch):
         return False
 
 
-# -*- Лексический анализатор. Принимает входную цепочку (строку файла)-*-
-def scanner(line):
-    lexeme = None
-    i = 0
-    s_i = 0
-    temp = ''
-    while i < len(line): 
-        if isLetter(line[i]):
-            temp = temp + line[i]
-            i += 1
-        else:
-            lexeme = Lexeme('1', 'id', 'type', temp)
+def transliterator(ch):
+    pass
+
+
+# -*- Лексический анализатор. Принимает целый файл-*-
+def scanner(file_programm):
+    lexems = [] # Список лексем.
+    lexem = ''  # Обрабатываемая лексема
+    ch_index_in_line = 0 # Индекс обрабатываемого символа
+    # Разбиваем вхожной поток по строкам
+    for line_number, line in enumerate(file_programm):
+        # Блок транслитератор?!    <<<---
+        # Начинаем перебор символов
+        for ch_index_in_line in range(len(line)):
+            # Если БУКВА, то начинаем обрабатывать возможные лексемы:
+            #  - ЗАРЕЗЕРВИРОВАННАЯ ИНСТРУКЦИЯ
+            #  - ИДЕНТИФИКАТОР
+            #  - ... Дописать    <<<---
+            if isLetter(line[ch_index_in_line]):
+                # Заполняем лексему 
+                lexem = lexem + line[ch_index_in_line]
+                # Обрабатываем дальш потенциальную лексему
+                for ch_index_in_line in range(ch_index_in_line + 1, len(line)):
+                    # Если последующий символ БУКВА то
+                    if isLetter(line[ch_index_in_line]):
+                        # Заполняем лесему
+                        lexem = lexem + line[ch_index_in_line]
+                        # Продолжаем обработку возможной лексемы
+                        continue
+                    # Иначе, если разделяющий символ, то определена лексема (ИДЕНТИФИКАТОР или ЗАРЕЗЕРВИРОВАННАЯ ИНСТРУКЦИЯ)
+                    elif isSkip(line[ch_index_in_line]):
+                        # Заканчиваем обраьотку лесемы
+                        break
+                    # Если символ не определен, то предположение о возможной лексеме ложно
+                    else:
+                        # Обнуляем обрабатываемую лесему
+                        lexem = ''
+                        # Заканчиваем обраьотку лесемы
+                        break
+            # Переходим к следующей строке файла
             break
-        
-    return lexeme;
+        # При этом, если лексема была обнаружена, то
+        if not lexem == '':
+            # добаляем ее в список лексем
+            lexems.append(lexem)
+            # И обнуляем обрабатываемую лексему
+            lexem = ''
     
-    
+    print(lexems)
 
 # -*- Главная функция -*-
 def main(fp, fl):
     with open(fp) as input_file_programm:
+        scanner(input_file_programm)
     
-        lexems = []
-        for line, i in enumerate(input_file_programm):
-            lexems.append(scanner(line))
-        
-        for lex in lexems:      
-            print(lex.description())
+#         lexems = []
+#         for line, i in enumerate(input_file_programm):
+#             lexems.append(scanner(line))
+#         
+#         for lex in lexems:      
+#             print(lex.description())
 
 
 if __name__ == '__main__':
