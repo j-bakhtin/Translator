@@ -5,21 +5,35 @@ Created on 4 Feb. 2019 y.
 '''
 from builtins import str
 import sys
+import os
 
 
-# -*- Класс, описывающий лексему в формате <строка>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>] -*-
+
+# -*- Класс, описывающий лексему в формате <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>] -*-
 class Lexeme:
-    def __init__(self, lineNumber, lexeme, recognizedValue, value):
-        self.lineNumber = lineNumber
-        self.lexeme = lexeme
-        self.recognizedValue = recognizedValue
-        self.value = value
+    lineNumber = '?'
+    lexeme = '?'
+    typeLexeme = '?'
+    recognizedValue = '?' 
+    value = '?'
+    
+    
+    def __init__(self, lineNumber, lexeme, typeLexeme, recognizedValue, value):
+        self.lineNumber = str(lineNumber)
+        self.lexeme = str(lexeme)
+        self.typeLexeme = str(typeLexeme)
+        self.recognizedValue = str(recognizedValue)
+        self.value = str(value)
     
     
     # -*- Полное описание лексемы -*-
-    def description(self):
-        return(self.lineNumber + 'lex:' + self.lexeme + ':'+self.recognizedValue + 'val:' + self.value) 
+    def getDescription(self):
+        return(self.lineNumber + 'lex:' + self.lexeme + self.typeLexeme + ':'+self.recognizedValue + 'val:' + self.value) 
     
+    
+    def getDescriptionTable(self):
+        return("Номер строки: " + self.lineNumber + '\nЛексема: ' + self.lexeme + '\nТип: ' + self.typeLexeme + 
+               '\nРАспознанное значение: ' + self.recognizedValue + '\nЗначение: ' + self.value) 
     
 # -*- Определение принадлежности символа к классу букв -*-
 def isLetter(ch):
@@ -83,12 +97,13 @@ def transliterator(ch):
 # -*- Лексический анализатор. Принимает целый файл-*-
 def scanner(file_programm):
     lexems = [] # Список лексем.
+    obj_list = []
     lexem = ''  # Обрабатываемая лексема
     ch_index_in_line = 0
     # Разбиваем вхожной поток по строкам
     for line_number, line in enumerate(file_programm):
-        ch_index_in_line = 0 # Индекс обрабатываемого символа
-        lexem = ''
+        ch_index_in_line = 0 # Индекс обрабатываемого символа, обнуляем для каждой строки
+        lexem = '' # обнуляем лексему
         # Блок транслитератор?!    <<<---
         # Начинаем перебор символов
         for index_in_line in range(ch_index_in_line, len(line)):
@@ -147,6 +162,8 @@ def scanner(file_programm):
                     # Иначе, если разделяющий символ, то определена лексема (ИДЕНТИФИКАТОР или ЗАРЕЗЕРВИРОВАННАЯ ИНСТРУКЦИЯ)
                     elif isSkip(line[index_in_lexem]):
                         # Добавляем лексему в список
+                        obj = Lexeme(line_number, 'Int', type(int(lexem)), int(lexem), lexem)
+                        obj_list.append(obj)
                         lexems.append(lexem)
                         # Обнуляем обрабатываемую лексему
                         ch_index_in_line = index_in_lexem
@@ -161,21 +178,32 @@ def scanner(file_programm):
                         break
                 # Выходим из цикла, чтобы начать обработку новой, потенциальной, лексемы
                 continue
+
             # Смещаемся на индекс вперед, так как на текущий символ не определен Транслитератором    <<<--- Временно
             ch_index_in_line += 1
+            
      
     print(lexems)
+    for obj in obj_list:
+        print(obj.getDescription())
+        
+    for obj in obj_list:
+        print(obj.getDescriptionTable())
 
 
 # -*- Главная функция -*-
 def main(fp, fl):
-    with open(fp) as input_file_programm:
-        scanner(input_file_programm)
-
+    
+    if len(sys.argv) != 1:
+        if os.stat(sys.argv[1]).st_size != 0:
+            with open(fp) as input_file_programm:
+                scanner(input_file_programm)
+        else:
+            print("Input file is empty")
+    else:
+        print('Parametrs not found')
 
 
 if __name__ == '__main__':
-    if not len(sys.argv) == 1:
-        main(sys.argv[1], sys.argv[2])
-    else:
-        print('Parametrs not found')
+    main(sys.argv[1], sys.argv[2])
+
