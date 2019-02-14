@@ -4,10 +4,14 @@ Created on 4 Feb. 2019 y.
 @author: Jurij Bakhtin
 '''
 from builtins import str
+from itertools import islice, count
 import sys
 import os
 
-
+# -*- Символы ограничители
+limeters = [',', '.', '(', ')', '[', ']', ':', ';', '+', '-', '*', '/', '<', '>', '@']
+# -*- Зарезервированные слова
+reserved_words = [ "program", "var", "real", "integer", "begin", "for", "downto", "do", "begin", "end", "writeln" ]
 
 # -*- Класс, описывающий лексему в формате <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>] -*-
 class Lexeme:
@@ -18,7 +22,7 @@ class Lexeme:
     value = '?'
     
     
-    def __init__(self, lineNumber, lexeme, typeLexeme, recognizedValue, value):
+    def __init__(self, lineNumber = '?', lexeme = '?', typeLexeme = '?', recognizedValue = '?', value = '?'):
         self.lineNumber = str(lineNumber)
         self.lexeme = str(lexeme)
         self.typeLexeme = str(typeLexeme)
@@ -34,7 +38,8 @@ class Lexeme:
     def getDescriptionTable(self):
         return("Номер строки: " + self.lineNumber + '\nЛексема: ' + self.lexeme + '\nТип: ' + self.typeLexeme + 
                '\nРАспознанное значение: ' + self.recognizedValue + '\nЗначение: ' + self.value) 
-    
+
+
 # -*- Определение принадлежности символа к классу букв -*-
 def isLetter(ch):
     if (ch >= 'A' and ch <= 'Z') or (ch >= 'a' and ch <= 'z'):
@@ -90,6 +95,10 @@ def isIgnore(ch):
         return False
 
 
+def isReserved(ch):
+    return ch in reserved_words
+
+
 def transliterator(ch):
     pass
 
@@ -99,14 +108,13 @@ def scanner(file_programm):
     lexems = [] # Список лексем.
     obj_list = []
     lexem = ''  # Обрабатываемая лексема
-    ch_index_in_line = 0
     # Разбиваем вхожной поток по строкам
     for line_number, line in enumerate(file_programm):
-        ch_index_in_line = 0 # Индекс обрабатываемого символа, обнуляем для каждой строки
+        index_in_line = 0 # Индекс обрабатываемого символа, обнуляем для каждой строки
         lexem = '' # обнуляем лексему
         # Блок транслитератор?!    <<<---
         # Начинаем перебор символов
-        for index_in_line in range(ch_index_in_line, len(line)):
+        while index_in_line < len(line):
             # Если БУКВА, то начинаем обрабатывать возможные лексемы:
             #  - ЗАРЕЗЕРВИРОВАННАЯ ИНСТРУКЦИЯ
             #  - ИДЕНТИФИКАТОР
@@ -115,19 +123,26 @@ def scanner(file_programm):
                 # Заполняем лексему 
                 lexem = lexem + line[index_in_line]
                 # Обрабатываем дальш потенциальную лексему
-                for index_in_lexem in range(ch_index_in_line + 1, len(line)):
+                index_in_lexem = index_in_line + 1
+                while index_in_lexem < len(line):
                     # Если последующий символ БУКВА то
                     if isLetter(line[index_in_lexem]):
                         # Заполняем лесему
                         lexem = lexem + line[index_in_lexem]
                         # Продолжаем обработку возможной лексемы
+                        index_in_lexem += 1
                         continue
                     # Иначе, если разделяющий символ, то определена лексема (ИДЕНТИФИКАТОР или ЗАРЕЗЕРВИРОВАННАЯ ИНСТРУКЦИЯ)
                     elif isSkip(line[index_in_lexem]):
                         # Добавляем лексему в список
                         lexems.append(lexem)
+                        if isReserved(lexem.lower()):
+                            obj = Lexeme(lineNumber=line_number, lexeme=reserved_words[reserved_words.index(lexem.lower())], value=lexem)
+                            obj_list.append(obj)
+                        else:
+                            obj = Lexeme(lineNumber=line_number, lexeme="ID", value=lexem)
+                            obj_list.append(obj)
                         # Обнуляем обрабатываемую лексему
-                        ch_index_in_line = index_in_lexem
                         index_in_line = index_in_lexem
                         lexem = ''
                         # Заканчиваем обраьотку лесемы
@@ -137,10 +152,12 @@ def scanner(file_programm):
                         # Обнуляем обрабатываемую лесему
                         lexem = ''
                         # Заканчиваем обраьотку лесемы
+                        index_in_line = index_in_lexem
                         break
                 # Выходим из цикла, чтобы начать обработку новой, потенциальной, лексемы
+                index_in_line += 1
                 continue
-             
+            
             # Если ЦИФРА, то начинаем обрабатывать возможные лексемы:
             #  - ЦЕЛОЕ ЧИСЛО
             #  - ДРОБНОЕ ЧИСЛО
@@ -149,16 +166,18 @@ def scanner(file_programm):
                 # Заполняем лексему 
                 lexem = lexem + line[index_in_line]
                 # Обрабатываем дальш потенциальную лексему
-                for index_in_lexem in range(ch_index_in_line + 1, len(line)):
+                index_in_lexem = index_in_line + 1
+                while index_in_lexem < len(line):
                     # Если последующий символ БУКВА то
                     if isDigit(line[index_in_lexem]):
                         # Заполняем лесему
                         lexem = lexem + line[index_in_lexem]
                         # Продолжаем обработку возможной лексемы
+                        index_in_lexem += 1
                         continue
                     # Иначе если точка то тип лессемы ДРОБНОЕ ЧИСЛО
                     #elif line[ch_index_in_line] == '.':
-                         
+                           
                     # Иначе, если разделяющий символ, то определена лексема (ИДЕНТИФИКАТОР или ЗАРЕЗЕРВИРОВАННАЯ ИНСТРУКЦИЯ)
                     elif isSkip(line[index_in_lexem]):
                         # Добавляем лексему в список
@@ -166,29 +185,26 @@ def scanner(file_programm):
                         obj_list.append(obj)
                         lexems.append(lexem)
                         # Обнуляем обрабатываемую лексему
-                        ch_index_in_line = index_in_lexem
+                        # ch_index_in_line = index_in_lexem
                         lexem = ''
                         # Заканчиваем обраьотку лесемы
+                        index_in_line = index_in_lexem
                         break
                     # Если символ не определен, то предположение о возможной лексеме ложно - ОШИБКА
                     else:
                         # Обнуляем обрабатываемую лесему
                         lexem = ''
                         # Заканчиваем обраьотку лесемы
+                        index_in_line = index_in_lexem
                         break
                 # Выходим из цикла, чтобы начать обработку новой, потенциальной, лексемы
+                index_in_line += 1
                 continue
-
-            # Смещаемся на индекс вперед, так как на текущий символ не определен Транслитератором    <<<--- Временно
-            ch_index_in_line += 1
+            index_in_line += 1
             
-     
-    print(lexems)
+            
     for obj in obj_list:
         print(obj.getDescription())
-        
-    for obj in obj_list:
-        print(obj.getDescriptionTable())
 
 
 # -*- Главная функция -*-

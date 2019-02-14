@@ -1,0 +1,6 @@
+    hello 2343
+print 45 4678
+12     programm real
+      12 2    56    pep
+    1   hello 35
+45
