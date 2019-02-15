@@ -9,20 +9,13 @@ import sys
 import os
 
 # -*- Символы ограничители
-limeters = [',', '.', '(', ')', '[', ']', ':', ';', '+', '-', '*', '/', '<', '>', '@']
+limeters = [',', '.', '(', ')', '{', '}','[', ']', ':', ';', '+', '-', '*', '/', '<', '>', '@']
 # -*- Зарезервированные слова
 reserved_words = [ "program", "var", "real", "integer", "begin", "for", "downto", "do", "begin", "end", "writeln" ]
 
 # -*- Класс, описывающий лексему в формате <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>] -*-
-class Lexeme:
-    lineNumber = '?'
-    lexeme = '?'
-    typeLexeme = '?'
-    recognizedValue = '?' 
-    value = '?'
-    
-    
-    def __init__(self, lineNumber = '?', lexeme = '?', typeLexeme = '?', recognizedValue = '?', value = '?'):
+class Lexeme:  
+    def __init__(self, lineNumber = None, lexeme = None, typeLexeme = None, recognizedValue = None, value = None):
         self.lineNumber = str(lineNumber)
         self.lexeme = str(lexeme)
         self.typeLexeme = str(typeLexeme)
@@ -32,6 +25,12 @@ class Lexeme:
     
     # -*- Полное описание лексемы -*-
     def getDescription(self):
+        description = ''
+        description += self.lineNumber
+        if self.lexeme == 'Error':
+            description += 'lex:Error' + 'val:' + self.value
+            return description
+            
         return(self.lineNumber + 'lex:' + self.lexeme + self.typeLexeme + ':'+self.recognizedValue + 'val:' + self.value) 
     
     
@@ -89,7 +88,7 @@ def isSkip(ch):
 
 # -*- Определяет принадлежность к классу игнорируемых символов -*-
 def isIgnore(ch):
-    if (ch > 0 and ch < ' ' and ch != '\t' and ch != '\n' and ch !='\f'):
+    if (ch > chr(0) and ch < ' ' and ch != '\t' and ch != '\n' and ch !='\f'):
         return True
     else:
         return False
@@ -99,14 +98,18 @@ def isReserved(ch):
     return ch in reserved_words
 
 
+def isLimeters(ch):
+    return ch in limeters
+
+
 def transliterator(ch):
     pass
 
 
 # -*- Лексический анализатор. Принимает целый файл-*-
 def scanner(file_programm):
-    lexems = [] # Список лексем.
-    obj_list = []
+    lexems = []  # Список лексем.
+    obj_list = [] # Список лексем-объектов
     lexem = ''  # Обрабатываемая лексема
     # Разбиваем вхожной поток по строкам
     for line_number, line in enumerate(file_programm):
@@ -115,6 +118,22 @@ def scanner(file_programm):
         # Блок транслитератор?!    <<<---
         # Начинаем перебор символов
         while index_in_line < len(line):
+            # Тип лексемы
+            name_lexeme = ''
+            
+            if isSkip(line[index_in_line]):
+                index_in_line +=1
+                continue
+            
+            if isLimeters(line[index_in_line]):
+                lexem = lexem + line[index_in_line]
+                obj = Lexeme(line_number, name_lexeme, lexem, lexem, lexem)
+                obj_list.append(obj)
+                lexems.append(lexem)
+                lexem = ''
+                index_in_line +=1
+                continue
+                    
             # Если БУКВА, то начинаем обрабатывать возможные лексемы:
             #  - ЗАРЕЗЕРВИРОВАННАЯ ИНСТРУКЦИЯ
             #  - ИДЕНТИФИКАТОР
@@ -127,11 +146,25 @@ def scanner(file_programm):
                 while index_in_lexem < len(line):
                     # Если последующий символ БУКВА то
                     if isLetter(line[index_in_lexem]):
+                        name_lexeme = 'ID'
                         # Заполняем лесему
                         lexem = lexem + line[index_in_lexem]
                         # Продолжаем обработку возможной лексемы
                         index_in_lexem += 1
                         continue
+                    elif isDigit(line[index_in_lexem]):
+                        name_lexeme = 'ID'
+                        # Заполняем лесему
+                        lexem = lexem + line[index_in_lexem]
+                        # Продолжаем обработку возможной лексемы
+                        index_in_lexem += 1
+                        continue
+                    
+                    elif line[index_in_lexem] == '_':
+                        lexem = lexem + line[index_in_lexem]
+                        index_in_lexem += 1
+                        continue
+                        
                     # Иначе, если разделяющий символ, то определена лексема (ИДЕНТИФИКАТОР или ЗАРЕЗЕРВИРОВАННАЯ ИНСТРУКЦИЯ)
                     elif isSkip(line[index_in_lexem]):
                         # Добавляем лексему в список
@@ -140,13 +173,22 @@ def scanner(file_programm):
                             obj = Lexeme(lineNumber=line_number, lexeme=reserved_words[reserved_words.index(lexem.lower())], value=lexem)
                             obj_list.append(obj)
                         else:
-                            obj = Lexeme(lineNumber=line_number, lexeme="ID", value=lexem)
+                            obj = Lexeme(lineNumber=line_number, lexeme=name_lexeme, value=lexem)
                             obj_list.append(obj)
                         # Обнуляем обрабатываемую лексему
                         index_in_line = index_in_lexem
                         lexem = ''
                         # Заканчиваем обраьотку лесемы
                         break
+                    
+                    elif isLimeters(line[index_in_lexem]):
+                        obj = Lexeme(line_number, name_lexeme, lexem, lexem, lexem)
+                        obj_list.append(obj)
+                        lexems.append(lexem)
+                        lexem = ''
+                        index_in_line = index_in_lexem
+                        break
+                    
                     # Если символ не определен, то предположение о возможной лексеме ложно
                     else:
                         # Обнуляем обрабатываемую лесему
@@ -155,69 +197,77 @@ def scanner(file_programm):
                         index_in_line = index_in_lexem
                         break
                 # Выходим из цикла, чтобы начать обработку новой, потенциальной, лексемы
-                index_in_line += 1
                 continue
             
-            # Если ЦИФРА, то начинаем обрабатывать возможные лексемы:
-            #  - ЦЕЛОЕ ЧИСЛО
-            #  - ДРОБНОЕ ЧИСЛО
-            #  - ... Дописать    <<<---
             if isDigit(line[index_in_line]):
-                # Заполняем лексему 
                 lexem = lexem + line[index_in_line]
-                # Обрабатываем дальш потенциальную лексему
                 index_in_lexem = index_in_line + 1
-                while index_in_lexem < len(line):
-                    # Если последующий символ БУКВА то
+                
+                while index_in_lexem < len(line): 
                     if isDigit(line[index_in_lexem]):
-                        # Заполняем лесему
+                        if name_lexeme != "Error":
+                            name_lexeme = "Int"
                         lexem = lexem + line[index_in_lexem]
-                        # Продолжаем обработку возможной лексемы
                         index_in_lexem += 1
                         continue
-                    # Иначе если точка то тип лессемы ДРОБНОЕ ЧИСЛО
-                    #elif line[ch_index_in_line] == '.':
-                           
-                    # Иначе, если разделяющий символ, то определена лексема (ИДЕНТИФИКАТОР или ЗАРЕЗЕРВИРОВАННАЯ ИНСТРУКЦИЯ)
+                    
+                    elif isLetter(line[index_in_lexem]):
+                        name_lexeme = "Error"
+                        lexem = lexem + line[index_in_lexem]
+                        index_in_lexem += 1
+                        continue
+                    
+                    elif line[index_in_lexem] == '.':
+                        if name_lexeme != "Error":
+                            name_lexeme = "Real"
+                        lexem = lexem + line[index_in_lexem]
+                        index_in_lexem += 1
+                        continue 
+                      
                     elif isSkip(line[index_in_lexem]):
-                        # Добавляем лексему в список
-                        obj = Lexeme(line_number, 'Int', type(int(lexem)), int(lexem), lexem)
+                        obj = Lexeme(line_number, name_lexeme, lexem, lexem, lexem)
                         obj_list.append(obj)
                         lexems.append(lexem)
-                        # Обнуляем обрабатываемую лексему
-                        # ch_index_in_line = index_in_lexem
                         lexem = ''
-                        # Заканчиваем обраьотку лесемы
                         index_in_line = index_in_lexem
                         break
-                    # Если символ не определен, то предположение о возможной лексеме ложно - ОШИБКА
+                    
+                    elif isLimeters(line[index_in_lexem]):
+                        obj = Lexeme(line_number, name_lexeme, lexem, lexem, lexem)
+                        obj_list.append(obj)
+                        lexems.append(lexem)
+                        lexem = ''
+                        index_in_line = index_in_lexem
+                        break
+                    
                     else:
-                        # Обнуляем обрабатываемую лесему
                         lexem = ''
-                        # Заканчиваем обраьотку лесемы
                         index_in_line = index_in_lexem
                         break
-                # Выходим из цикла, чтобы начать обработку новой, потенциальной, лексемы
+                    
                 index_in_line += 1
                 continue
+            
             index_in_line += 1
-            
-            
-    for obj in obj_list:
-        print(obj.getDescription())
+                        
+    return obj_list
 
 
 # -*- Главная функция -*-
 def main(fp, fl):
+    obj_list = []
     
     if len(sys.argv) != 1:
         if os.stat(sys.argv[1]).st_size != 0:
             with open(fp) as input_file_programm:
-                scanner(input_file_programm)
+                obj_list = scanner(input_file_programm)
         else:
             print("Input file is empty")
     else:
         print('Parametrs not found')
+        
+    for obj in obj_list:
+        print(obj.getDescription())
 
 
 if __name__ == '__main__':
