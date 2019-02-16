@@ -9,29 +9,89 @@ import sys
 import os
 
 # -*- Символы ограничители
-limeters = [',', '.', '(', ')', '{', '}','[', ']', ':', ';', '+', '-', '*', '/', '<', '>', '@']
-# -*- Зарезервированные слова
-reserved_words = [ "program", "var", "real", "integer", "begin", "for", "downto", "do", "begin", "end", "writeln" ]
+limeters = {
+            '(':'LRB',
+            ')':'RRB',
+            '[':'LSB', 
+            ']':'RSB', 
+            '{':'LCB', 
+            '}':'RCB',
+            ':':'Colon',
+            ',':'Comma',
+            ';':'Semicolon',}
 
-# -*- Класс, описывающий лексему в формате <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>] -*-
+# Зарезервированные операторы
+reserved_operators = {
+            '+':'Add',
+            '-':'Min',
+            '*':'Mul',
+            '<':'LT',
+            '>':'GT'}
+
+# Зарезервированные составные операторы
+reserved_composite_operators = {
+            '==':'EQ',
+            '!=':'NE',
+            '<':'LT',
+            '>':'GT',
+            '<=':'LE',
+            '>=':'GE',
+            ':=':'Let', }
+
+# -*- Зарезервированные слова
+reserved_words = ['Div', 'Mod', 'Cast', 'Box','End', 'Int', 'Vector', 'TypeInt', 'TypeReal', 'Goto', 'Read',
+                  'Break', 'Tools', 'Proc', 'Call', 'If', 'Case', 'Then', 'Else', 'Of', 'Or', 'While', 'Loop', 'Do']
+
+# Оставшиеся конструкции     
+#             'Comment'
+#             'Id'
+#             'Label'
+#             'Var'
+#             'Skip
+#             'Space'
+#             'Tab'
+
+
+
+# -*- Класс, описывающий лексему в формате <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>]
 class Lexeme:  
-    def __init__(self, lineNumber = None, lexeme = None, typeLexeme = None, recognizedValue = None, value = None):
+        
+    def __init__(self, lineNumber, value, error = False):
         self.lineNumber = str(lineNumber)
-        self.lexeme = str(lexeme)
-        self.typeLexeme = str(typeLexeme)
-        self.recognizedValue = str(recognizedValue)
         self.value = str(value)
-    
+        self.error = error
     
     # -*- Полное описание лексемы -*-
     def getDescription(self):
-        description = ''
-        description += self.lineNumber
-        if self.lexeme == 'Error':
-            description += 'lex:Error' + 'val:' + self.value
-            return description
-            
-        return(self.lineNumber + 'lex:' + self.lexeme + self.typeLexeme + ':'+self.recognizedValue + 'val:' + self.value) 
+        description = self.lineNumber
+        
+        
+        if self.error == True:
+            description += 'lex:' + 'Error' + 'val:' + self.value
+        elif self.value in reserved_words:
+            description += 'lex:' + self.value + 'val:' + self.value
+        elif self.value in limeters.keys():
+            description += 'lex:' + limeters.get(self.value) + 'val:' + self.value
+        elif self.value in reserved_operators.keys():
+            description += 'lex:' + reserved_operators.get(self.value) + 'val:' + self.value
+        elif self.value in reserved_composite_operators.keys():
+            description += 'lex:' + reserved_composite_operators.get(self.value) + 'val:' + self.value
+        else:
+            try: 
+                if type(int(self.value)) is int:
+                    description += 'lex:' + 'TypeInt' + type(int(self.value)).__name__ + ':' + self.value + 'val:' + self.value
+                    return(description)
+            except ValueError:   
+                pass
+                
+            try: 
+                if type(float(self.value)) is float:
+                    description += 'lex:' + 'TypeRal' + type(float(self.value)).__name__ + ':' + self.value + 'val:' + self.value
+                    return(description)
+            except ValueError:   
+                description += 'lex:' + 'Id' +'val:' + self.value
+        
+        return(description) 
     
     
     def getDescriptionTable(self):
@@ -108,7 +168,6 @@ def transliterator(ch):
 
 # -*- Лексический анализатор. Принимает целый файл-*-
 def scanner(file_programm):
-    lexems = []  # Список лексем.
     obj_list = [] # Список лексем-объектов
     lexem = ''  # Обрабатываемая лексема
     # Разбиваем вхожной поток по строкам
@@ -119,7 +178,7 @@ def scanner(file_programm):
         # Начинаем перебор символов
         while index_in_line < len(line):
             # Тип лексемы
-            name_lexeme = ''
+            error = False
             
             if isSkip(line[index_in_line]):
                 index_in_line +=1
@@ -127,9 +186,8 @@ def scanner(file_programm):
             
             if isLimeters(line[index_in_line]):
                 lexem = lexem + line[index_in_line]
-                obj = Lexeme(line_number, name_lexeme, lexem, lexem, lexem)
+                obj = Lexeme(line_number,lexem)
                 obj_list.append(obj)
-                lexems.append(lexem)
                 lexem = ''
                 index_in_line +=1
                 continue
@@ -146,14 +204,14 @@ def scanner(file_programm):
                 while index_in_lexem < len(line):
                     # Если последующий символ БУКВА то
                     if isLetter(line[index_in_lexem]):
-                        name_lexeme = 'ID'
+
                         # Заполняем лесему
                         lexem = lexem + line[index_in_lexem]
                         # Продолжаем обработку возможной лексемы
                         index_in_lexem += 1
                         continue
                     elif isDigit(line[index_in_lexem]):
-                        name_lexeme = 'ID'
+
                         # Заполняем лесему
                         lexem = lexem + line[index_in_lexem]
                         # Продолжаем обработку возможной лексемы
@@ -168,13 +226,11 @@ def scanner(file_programm):
                     # Иначе, если разделяющий символ, то определена лексема (ИДЕНТИФИКАТОР или ЗАРЕЗЕРВИРОВАННАЯ ИНСТРУКЦИЯ)
                     elif isSkip(line[index_in_lexem]):
                         # Добавляем лексему в список
-                        lexems.append(lexem)
                         if isReserved(lexem.lower()):
-                            obj = Lexeme(lineNumber=line_number, lexeme=reserved_words[reserved_words.index(lexem.lower())], value=lexem)
+                            obj = Lexeme(line_number, lexem)
                             obj_list.append(obj)
                         else:
-                            obj = Lexeme(lineNumber=line_number, lexeme=name_lexeme, value=lexem)
-                            obj_list.append(obj)
+                            obj = Lexeme(line_number, lexem)
                         # Обнуляем обрабатываемую лексему
                         index_in_line = index_in_lexem
                         lexem = ''
@@ -182,9 +238,8 @@ def scanner(file_programm):
                         break
                     
                     elif isLimeters(line[index_in_lexem]):
-                        obj = Lexeme(line_number, name_lexeme, lexem, lexem, lexem)
+                        obj = Lexeme(line_number, lexem)
                         obj_list.append(obj)
-                        lexems.append(lexem)
                         lexem = ''
                         index_in_line = index_in_lexem
                         break
@@ -205,37 +260,31 @@ def scanner(file_programm):
                 
                 while index_in_lexem < len(line): 
                     if isDigit(line[index_in_lexem]):
-                        if name_lexeme != "Error":
-                            name_lexeme = "Int"
                         lexem = lexem + line[index_in_lexem]
                         index_in_lexem += 1
                         continue
                     
                     elif isLetter(line[index_in_lexem]):
-                        name_lexeme = "Error"
+                        error = True
                         lexem = lexem + line[index_in_lexem]
                         index_in_lexem += 1
                         continue
                     
                     elif line[index_in_lexem] == '.':
-                        if name_lexeme != "Error":
-                            name_lexeme = "Real"
                         lexem = lexem + line[index_in_lexem]
                         index_in_lexem += 1
                         continue 
                       
                     elif isSkip(line[index_in_lexem]):
-                        obj = Lexeme(line_number, name_lexeme, lexem, lexem, lexem)
+                        obj = Lexeme(line_number, lexem, error)
                         obj_list.append(obj)
-                        lexems.append(lexem)
                         lexem = ''
                         index_in_line = index_in_lexem
                         break
                     
                     elif isLimeters(line[index_in_lexem]):
-                        obj = Lexeme(line_number, name_lexeme, lexem, lexem, lexem)
+                        obj = Lexeme(line_number, lexem, error)
                         obj_list.append(obj)
-                        lexems.append(lexem)
                         lexem = ''
                         index_in_line = index_in_lexem
                         break
@@ -257,6 +306,7 @@ def scanner(file_programm):
 def main(fp, fl):
     obj_list = []
     
+    
     if len(sys.argv) != 1:
         if os.stat(sys.argv[1]).st_size != 0:
             with open(fp) as input_file_programm:
@@ -268,8 +318,13 @@ def main(fp, fl):
         
     for obj in obj_list:
         print(obj.getDescription())
+        
+    input('Enter ...')
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    if sys.argv != []:
+        main(sys.argv[1], sys.argv[2])
+    else:
+        main('fp2.txt', 'fl2.txt')
 
