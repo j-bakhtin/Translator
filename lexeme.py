@@ -52,14 +52,11 @@ reserved_words = ['Div', 'Mod', 'Cast', 'Box','End', 'Int', 'Vector', 'TypeInt',
 
 # -*- Класс, описывающий лексему в формате <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>]
 class Lexeme:
-    line_number = None
-    value = None
-    exception = None
 
     def __init__(self, line_number, value, exception=None):
-        self.lineNumber = str(line_number)
+        self.line_number = str(line_number)
         self.value = str(value)
-        self.error = exception
+        self.exception = exception
     
     # -*- Полное описание лексемы -*-
     def get_description(self):
@@ -99,58 +96,37 @@ class Lexeme:
 
 # -*- Определение принадлежности символа к классу букв -*-
 def is_letter(ch):
-    if ('A' <= ch <= 'Z') or ('a' <= ch <= 'z'):
-        return True
-    else:
-        return False
+    return ('A' <= ch <= 'Z') or ('a' <= ch <= 'z')
 
   
 # -*- Определение принадлежности символа к классу двоичных цифр -*-
 def is_bin(ch):
-    if ch == '0' or ch == '1':
-        return True
-    else:
-        return False
+    return ch == '0' or ch == '1'
 
    
 # -*- Определение принадлежности символа к классу восьмиричных цифр -*- 
 def is_octal(ch):
-    if '0' <= ch <= '7':
-        return True
-    else:
-        return False
+    return '0' <= ch <= '7'
 
 
 # -*- Определение принадлежности символа к классу десятичных цифр -*-
 def is_digit(ch):
-    if '0' <= ch <= '9':
-        return True
-    else:
-        return False
+    return '0' <= ch <= '9'
 
 
 # -*- Определение принадлежности символа к классу шестнадцатеричныхцифр -*-
 def is_hex(ch):
-    if ('0' <= ch <= '9') or ('A' <= ch <= 'F') or ('a' <= ch <= 'f'):
-        return True
-    else:
-        return False
+    return ('0' <= ch <= '9') or ('A' <= ch <= 'F') or ('a' <= ch <= 'f')
     
 
 # -*-Определение принадлежности символа к классу пропусков -*-
 def is_skip(ch):
-    if ch == ' ' or ch == '\t' or ch == '\n' or ch == '\f':
-        return True
-    else:
-        return False
+    return ch == ' ' or ch == '\t' or ch == '\n' or ch == '\f'
 
 
 # -*- Определяет принадлежность к классу игнорируемых символов -*-
 def is_ignore(ch):
-    if chr(0) < ch < ' ' and ch != '\t' and ch != '\n' and ch != '\f':
-        return True
-    else:
-        return False
+    return chr(0) < ch < ' ' and ch != '\t' and ch != '\n' and ch != '\f'
 
 
 def is_reserved(ch):
@@ -281,23 +257,18 @@ def scanner(file_program):
 def main(fp, fl):
     obj_list = []
 
+    with open(fp) as input_file_program:
+        obj_list = scanner(input_file_program)
+        
+    for obj in obj_list:
+        print(obj.get_description())
+
+
+if __name__ == '__main__':
     if len(sys.argv) != 1:
         if os.stat(sys.argv[1]).st_size != 0:
-            with open(fp) as input_file_program:
-                obj_list = scanner(input_file_program)
+            main(sys.argv[1], sys.argv[2])
         else:
             print("Input file is empty")
     else:
         print('Parameters not found')
-        
-    for obj in obj_list:
-        print(obj.get_description())
-        
-    input('Enter ...')
-
-
-if __name__ == '__main__':
-    if sys.argv.__sizeof__ != 0:
-        main(sys.argv[1], sys.argv[2])
-    else:
-        main('tp2.txt', 'tl2.txt')
