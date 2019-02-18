@@ -1,1 +1,22 @@
-56
+hello
+programmain; { pro{g}am }
+== 1programmain; { pro{g}am }
+var   sum: real;
+     f, per_1, x_1,i:integer;
+begin
+  {sum:=(-x_1+2.5)*4 - (x_1-6)*((((x_1+2))));}
+  x_1:=18;  
+  f:= 456;
+  for i:=10 downto per_1-f+i*(x_1+1) do
+  begin
+  1begin
+    per_1 := per_1 + x_1*sum*f;
+     x_1:=-x_1-1;
+     f:=(f+1)*(x_1-24700);
+     sum:=(x_1+2.5)*4 - (x_1-6)*(x_1+2);
+  end;
+   writeln('summa = ', sum);
+==
+   writeln('summa == ', sum);
+end.
+hello

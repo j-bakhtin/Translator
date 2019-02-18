@@ -6,7 +6,7 @@ from builtins import str
 import sys
 import os
 
-# -*- Символы ограничители
+# Символы ограничители
 limiters = {
             '(': 'LRB',
             ')': 'RRB',
@@ -20,6 +20,7 @@ limiters = {
 
 # Зарезервированные операторы
 reserved_operators = {
+            '=': 'Cast',
             '+': 'Add',
             '-': 'Min',
             '*': 'Mul',
@@ -36,7 +37,7 @@ reserved_composite_operators = {
             '>=': 'GE',
             ':=': 'Let'}
 
-# -*- Зарезервированные слова
+# Зарезервированные слова
 reserved_words = ['Div', 'Mod', 'Cast', 'Box','End', 'Int', 'Vector', 'TypeInt', 'TypeReal', 'Goto', 'Read',
                   'Break', 'Tools', 'Proc', 'Call', 'If', 'Case', 'Then', 'Else', 'Of', 'Or', 'While', 'Loop', 'Do']
 
@@ -50,7 +51,7 @@ reserved_words = ['Div', 'Mod', 'Cast', 'Box','End', 'Int', 'Vector', 'TypeInt',
 #             'Tab'
 
 
-# -*- Класс, описывающий лексему в формате <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>]
+# Класс, описывающий лексему в формате <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>]
 class Lexeme:
 
     def __init__(self, line_number, value, exception=None):
@@ -94,44 +95,46 @@ class Lexeme:
         return description
 
 
-# -*- Определение принадлежности символа к классу букв -*-
+# Определение принадлежности символа к классу букв -*-
 def is_letter(ch):
     return ('A' <= ch <= 'Z') or ('a' <= ch <= 'z')
 
   
-# -*- Определение принадлежности символа к классу двоичных цифр -*-
+# Определение принадлежности символа к классу двоичных цифр -*-
 def is_bin(ch):
     return ch == '0' or ch == '1'
 
    
-# -*- Определение принадлежности символа к классу восьмиричных цифр -*- 
+# Определение принадлежности символа к классу восьмиричных цифр -*-
 def is_octal(ch):
     return '0' <= ch <= '7'
 
 
-# -*- Определение принадлежности символа к классу десятичных цифр -*-
+# Определение принадлежности символа к классу десятичных цифр -*-
 def is_digit(ch):
     return '0' <= ch <= '9'
 
 
-# -*- Определение принадлежности символа к классу шестнадцатеричныхцифр -*-
+# Определение принадлежности символа к классу шестнадцатеричныхцифр -*-
 def is_hex(ch):
     return ('0' <= ch <= '9') or ('A' <= ch <= 'F') or ('a' <= ch <= 'f')
     
 
-# -*-Определение принадлежности символа к классу пропусков -*-
+# Определение принадлежности символа к классу пропусков -*-
 def is_skip(ch):
-    return ch == ' ' or ch == '\t' or ch == '\n' or ch == '\f'
+    return ch == ' ' or ch == '\t' or ch == '\n' or ch == '\f' or ch == '\r' or ch == '\v' or ch == '\0'
 
 
-# -*- Определяет принадлежность к классу игнорируемых символов -*-
+# Определяет принадлежность к классу игнорируемых символов -*-
 def is_ignore(ch):
     return chr(0) < ch < ' ' and ch != '\t' and ch != '\n' and ch != '\f'
 
 
-def is_reserved(ch):
+def is_reserved_word(ch):
     return ch in reserved_words
 
+def is_reserved_operators(ch):
+    return ch in reserved_operators
 
 def is_limiters(ch):
     return ch in limiters
@@ -148,7 +151,9 @@ def scanner(file_program):
 
     for line_number, line in enumerate(file_program):
         index_in_line = 0
+        line += '\0'
         lexeme = ''
+        
         while index_in_line < len(line):
             exception = False
 
@@ -157,6 +162,14 @@ def scanner(file_program):
                 continue
             
             if is_limiters(line[index_in_line]):
+                lexeme = lexeme + line[index_in_line]
+                obj = Lexeme(line_number, lexeme)
+                obj_list.append(obj)
+                lexeme = ''
+                index_in_line += 1
+                continue
+
+            if is_reserved_operators(line[index_in_line]):
                 lexeme = lexeme + line[index_in_line]
                 obj = Lexeme(line_number, lexeme)
                 obj_list.append(obj)
@@ -185,9 +198,8 @@ def scanner(file_program):
                         continue
                         
                     elif is_skip(line[index_in_lexeme]):
-                        if is_reserved(lexeme.lower()):
-                            obj = Lexeme(line_number, lexeme)
-                            obj_list.append(obj)
+                        obj = Lexeme(line_number, lexeme)
+                        obj_list.append(obj)
                         index_in_line = index_in_lexeme
                         lexeme = ''
                         break
