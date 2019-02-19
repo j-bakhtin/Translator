@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="481e091b-3eb7-45e0-81ea-e193d38bb2b0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lexeme.py" beforeDir="false" afterPath="$PROJECT_DIR$/lexeme.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tp.txt" afterDir="false" />
     </list>
@@ -16,8 +17,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lexeme.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="807">
-              <caret line="213" column="32" selection-start-line="213" selection-start-column="32" selection-end-line="213" selection-end-column="32" />
+            <state relative-caret-position="425">
+              <caret line="85" column="44" selection-start-line="85" selection-start-column="44" selection-end-line="85" selection-end-column="44" />
+              <folding>
+                <element signature="e#55#79#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -127,8 +131,11 @@
     <entry file="file://$PROJECT_DIR$/lexeme.pyw" />
     <entry file="file://$PROJECT_DIR$/lexeme.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="807">
-          <caret line="213" column="32" selection-start-line="213" selection-start-column="32" selection-end-line="213" selection-end-column="32" />
+        <state relative-caret-position="425">
+          <caret line="85" column="44" selection-start-line="85" selection-start-column="44" selection-end-line="85" selection-end-column="44" />
+          <folding>
+            <element signature="e#55#79#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

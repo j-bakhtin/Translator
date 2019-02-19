@@ -5,6 +5,7 @@
 from builtins import str
 import sys
 import os
+import re
 
 # Символы ограничители
 limiters = {
@@ -75,22 +76,18 @@ class Lexeme:
             description += 'lex:' + reserved_operators.get(self.value) + 'val:' + self.value
         elif self.value in reserved_composite_operators.keys():
             description += 'lex:' + reserved_composite_operators.get(self.value) + 'val:' + self.value
+        elif self.exception == 'TypeInt':
+            description += 'lex:' + 'TypeInt' + type(int(self.value)).__name__ +\
+                           ':' + self.value + 'val:' + self.value
+        elif self.exception == 'TypeReal':
+            description += 'lex:' + 'TypeReal' + type(float(self.value)).__name__ +\
+                           ':' + self.value + 'val:' + self.value
+        elif self.exception == 'TypeBin':
+            description += 'lex:' + 'TypeBin' +  'val:' + self.value
+        elif self.exception == 'TypeHex':
+            description += 'lex:' + 'TypeHex' + 'val:' + self.value
         else:
-            try:
-                if type(int(self.value)) is int:
-                    description += 'lex:' + 'TypeInt' + type(int(self.value)).__name__ +\
-                                   ':' + self.value + 'val:' + self.value
-                    return description
-            except ValueError:
-                pass
-
-            try:
-                if type(float(self.value)) is float:
-                    description += 'lex:' + 'TypeRal' + type(float(self.value)).__name__ +\
-                                   ':' + self.value + 'val:' + self.value
-                    return description
-            except ValueError:
-                description += 'lex:' + 'Id' + 'val:' + self.value
+            description += 'lex:' + 'Id' + 'val:' + self.value
 
         return description
 
@@ -201,6 +198,7 @@ def scanner(file_program):
             if is_letter(line[index_in_line]):
                 lexeme = lexeme + line[index_in_line]
                 index_in_lexeme = index_in_line + 1
+
                 while index_in_lexeme < len(line):
 
                     if is_letter(line[index_in_lexeme]):
@@ -238,6 +236,7 @@ def scanner(file_program):
                 index_in_lexeme = index_in_line + 1
 
                 while index_in_lexeme < len(line):
+
                     if is_digit(line[index_in_lexeme]):
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
@@ -250,11 +249,24 @@ def scanner(file_program):
                         continue
 
                     elif line[index_in_lexeme] == '.':
+                        if exception == '':
+                            exception = 'TypeReal'
+                        elif exception == 'TypeReal':
+                            exception = 'Error'
+
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
                         continue
 
                     elif is_skip(line[index_in_lexeme]):
+                        if exception == '':
+                            exception = 'TypeInt'
+                        elif exception == 'Error':
+                            if re.match(r'[0-1]+b$', lexeme.lower()):
+                                exception = 'TypeBin'
+                            if re.match(r'[0-9a-fA-F]+h$', lexeme.lower()):
+                                exception = 'TypeHex'
+
                         obj = Lexeme(line_number, lexeme, exception)
                         obj_list.append(obj)
                         lexeme = ''
@@ -262,6 +274,8 @@ def scanner(file_program):
                         break
 
                     elif is_limiters(line[index_in_lexeme]):
+                        if exception == '':
+                            exception = 'TypeInt'
                         obj = Lexeme(line_number, lexeme, exception)
                         obj_list.append(obj)
                         lexeme = ''
