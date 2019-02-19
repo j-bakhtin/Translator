@@ -1,4 +1,4 @@
-//hello how are you 122 htl3
+_hello how are you 122f htl3
 programmain; { pro{g}am }
 == 1programmain; { pro{g}am }
 var   sum: real;
@@ -19,4 +19,4 @@ begin
 ==
    writeln('summa == ', sum);
 end.
-hello
+hello_

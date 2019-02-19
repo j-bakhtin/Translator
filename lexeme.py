@@ -97,7 +97,7 @@ class Lexeme:
 
 # Определение принадлежности символа к классу букв -*-
 def is_letter(ch):
-    return ('A' <= ch <= 'Z') or ('a' <= ch <= 'z')
+    return ('A' <= ch <= 'Z') or ('a' <= ch <= 'z') or ch == '_'
 
 
 # Определение принадлежности символа к классу двоичных цифр -*-
@@ -209,11 +209,6 @@ def scanner(file_program):
                         continue
 
                     elif is_digit(line[index_in_lexeme]):
-                        lexeme = lexeme + line[index_in_lexeme]
-                        index_in_lexeme += 1
-                        continue
-
-                    elif line[index_in_lexeme] == '_':
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
                         continue
