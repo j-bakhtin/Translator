@@ -38,10 +38,10 @@ reserved_composite_operators = {
             ':=': 'Let'}
 
 # Зарезервированные слова
-reserved_words = ['Div', 'Mod', 'Cast', 'Box','End', 'Int', 'Vector', 'TypeInt', 'TypeReal', 'Goto', 'Read',
+reserved_words = ['Div', 'Mod', 'Cast', 'Box', 'End', 'Int', 'Vector', 'TypeInt', 'TypeReal', 'Goto', 'Read',
                   'Break', 'Tools', 'Proc', 'Call', 'If', 'Case', 'Then', 'Else', 'Of', 'Or', 'While', 'Loop', 'Do']
 
-# Оставшиеся конструкции     
+# Оставшиеся конструкции
 #             'Comment'
 #             'Id'
 #             'Label'
@@ -58,7 +58,7 @@ class Lexeme:
         self.line_number = str(line_number)
         self.value = str(value)
         self.exception = exception
-    
+
     # -*- Полное описание лексемы -*-
     def get_description(self):
         description = self.line_number
@@ -76,20 +76,20 @@ class Lexeme:
         elif self.value in reserved_composite_operators.keys():
             description += 'lex:' + reserved_composite_operators.get(self.value) + 'val:' + self.value
         else:
-            try: 
+            try:
                 if type(int(self.value)) is int:
                     description += 'lex:' + 'TypeInt' + type(int(self.value)).__name__ +\
                                    ':' + self.value + 'val:' + self.value
                     return description
-            except ValueError:   
+            except ValueError:
                 pass
-                
-            try: 
+
+            try:
                 if type(float(self.value)) is float:
                     description += 'lex:' + 'TypeRal' + type(float(self.value)).__name__ +\
                                    ':' + self.value + 'val:' + self.value
                     return description
-            except ValueError:   
+            except ValueError:
                 description += 'lex:' + 'Id' + 'val:' + self.value
 
         return description
@@ -99,12 +99,12 @@ class Lexeme:
 def is_letter(ch):
     return ('A' <= ch <= 'Z') or ('a' <= ch <= 'z')
 
-  
+
 # Определение принадлежности символа к классу двоичных цифр -*-
 def is_bin(ch):
     return ch == '0' or ch == '1'
 
-   
+
 # Определение принадлежности символа к классу восьмиричных цифр -*-
 def is_octal(ch):
     return '0' <= ch <= '7'
@@ -118,7 +118,7 @@ def is_digit(ch):
 # Определение принадлежности символа к классу шестнадцатеричныхцифр -*-
 def is_hex(ch):
     return ('0' <= ch <= '9') or ('A' <= ch <= 'F') or ('a' <= ch <= 'f')
-    
+
 
 # Определение принадлежности символа к классу пропусков -*-
 def is_skip(ch):
@@ -133,8 +133,10 @@ def is_ignore(ch):
 def is_reserved_word(ch):
     return ch in reserved_words
 
+
 def is_reserved_operators(ch):
     return ch in reserved_operators
+
 
 def is_limiters(ch):
     return ch in limiters
@@ -153,14 +155,16 @@ def scanner(file_program):
         index_in_line = 0
         line += '\0'
         lexeme = ''
-        
-        while index_in_line < len(line):
-            exception = False
 
+        while index_in_line < len(line):
+            exception = ''
+
+            # Обработка отступов
             if is_skip(line[index_in_line]):
                 index_in_line += 1
                 continue
-            
+
+            # Обработка символов ограничителей
             if is_limiters(line[index_in_line]):
                 lexeme = lexeme + line[index_in_line]
                 obj = Lexeme(line_number, lexeme)
@@ -169,6 +173,7 @@ def scanner(file_program):
                 index_in_line += 1
                 continue
 
+            # Обработка зарезервированных операторов
             if is_reserved_operators(line[index_in_line]):
                 lexeme = lexeme + line[index_in_line]
                 obj = Lexeme(line_number, lexeme)
@@ -176,7 +181,23 @@ def scanner(file_program):
                 lexeme = ''
                 index_in_line += 1
                 continue
-                    
+
+            # Обработка комментария
+            if line[index_in_line] == '/':
+                lexeme = lexeme + line[index_in_line]
+                index_in_lexeme = index_in_line + 1
+
+                if line[index_in_lexeme] == '/':
+                    lexeme = lexeme + line[index_in_line]
+                    exception = 'Comment'
+                    obj = Lexeme(line_number, lexeme, exception)
+                    obj_list.append(obj)
+                    index_in_line = len(line) - 1
+                else:
+                    index_in_line += 1
+                lexeme = ''
+                continue
+
             if is_letter(line[index_in_line]):
                 lexeme = lexeme + line[index_in_line]
                 index_in_lexeme = index_in_line + 1
@@ -186,82 +207,82 @@ def scanner(file_program):
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
                         continue
-                    
+
                     elif is_digit(line[index_in_lexeme]):
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
                         continue
-                    
+
                     elif line[index_in_lexeme] == '_':
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
                         continue
-                        
+
                     elif is_skip(line[index_in_lexeme]):
                         obj = Lexeme(line_number, lexeme)
                         obj_list.append(obj)
                         index_in_line = index_in_lexeme
                         lexeme = ''
                         break
-                    
+
                     elif is_limiters(line[index_in_lexeme]):
                         obj = Lexeme(line_number, lexeme)
                         obj_list.append(obj)
                         lexeme = ''
                         index_in_line = index_in_lexeme
                         break
-                    
+
                     else:
                         lexeme = ''
                         index_in_line = index_in_lexeme
                         break
                 continue
-            
+
             if is_digit(line[index_in_line]):
                 lexeme = lexeme + line[index_in_line]
                 index_in_lexeme = index_in_line + 1
-                
+
                 while index_in_lexeme < len(line):
                     if is_digit(line[index_in_lexeme]):
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
                         continue
-                    
+
                     elif is_letter(line[index_in_lexeme]):
                         exception = 'Error'
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
                         continue
-                    
+
                     elif line[index_in_lexeme] == '.':
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
-                        continue 
-                      
+                        continue
+
                     elif is_skip(line[index_in_lexeme]):
                         obj = Lexeme(line_number, lexeme, exception)
                         obj_list.append(obj)
                         lexeme = ''
                         index_in_line = index_in_lexeme
                         break
-                    
+
                     elif is_limiters(line[index_in_lexeme]):
                         obj = Lexeme(line_number, lexeme, exception)
                         obj_list.append(obj)
                         lexeme = ''
                         index_in_line = index_in_lexeme
                         break
-                    
+
                     else:
                         lexeme = ''
                         index_in_line = index_in_lexeme
                         break
-                    
+
                 index_in_line += 1
                 continue
-            
+
             index_in_line += 1
-                        
+
     return obj_list
 
 
@@ -271,7 +292,7 @@ def main(fp, fl):
 
     with open(fp) as input_file_program:
         obj_list = scanner(input_file_program)
-        
+
     for obj in obj_list:
         print(obj.get_description())
 
