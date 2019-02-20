@@ -76,16 +76,28 @@ class Lexeme:
             description += 'lex:' + reserved_operators.get(self.value) + 'val:' + self.value
         elif self.value in reserved_composite_operators.keys():
             description += 'lex:' + reserved_composite_operators.get(self.value) + 'val:' + self.value
+
         elif self.exception == 'TypeInt':
-            description += 'lex:' + 'TypeInt' + type(int(self.value)).__name__ +\
+            description += 'lex:' + 'TypeInt' + type(int(self.value)).__name__ + \
                            ':' + self.value + 'val:' + self.value
         elif self.exception == 'TypeReal':
-            description += 'lex:' + 'TypeReal' + type(float(self.value)).__name__ +\
+            description += 'lex:' + 'TypeReal' + type(float(self.value)).__name__ + \
                            ':' + self.value + 'val:' + self.value
+        # elif self.exception == 'TypeD':
+        #     description += 'lex:' + 'TypeD' + 'val:' + self.value
         elif self.exception == 'TypeBin':
-            description += 'lex:' + 'TypeBin' +  'val:' + self.value
+            temp = int(re.sub(r'[bB]', '', self.value), 2)
+            description += 'lex:' + 'TypeInt' + type(temp).__name__ + \
+                           ':' + str(temp) + 'val:' + self.value
+        elif self.exception == 'TypeOctal':
+            temp = int(re.sub(r'[cC]', '', self.value), 8)
+            description += 'lex:' + 'TypeInt' + type(temp).__name__ + \
+                           ':' + str(temp) + 'val:' + self.value
         elif self.exception == 'TypeHex':
-            description += 'lex:' + 'TypeHex' + 'val:' + self.value
+            temp = int(re.sub(r'[hH]', '', self.value), 16)
+            description += 'lex:' + 'TypeInt' + type(temp).__name__ + \
+                           ':' + str(temp) + 'val:' + self.value
+
         else:
             description += 'lex:' + 'Id' + 'val:' + self.value
 
@@ -248,7 +260,7 @@ def scanner(file_program):
                         index_in_lexeme += 1
                         continue
 
-                    elif line[index_in_lexeme] == '.':
+                    elif re.match(r'[.+-]', line[index_in_lexeme]):
                         if exception == '':
                             exception = 'TypeReal'
                         elif exception == 'TypeReal':
@@ -258,24 +270,19 @@ def scanner(file_program):
                         index_in_lexeme += 1
                         continue
 
-                    elif is_skip(line[index_in_lexeme]):
+                    elif is_skip(line[index_in_lexeme]) or is_limiters(line[index_in_lexeme]):
                         if exception == '':
                             exception = 'TypeInt'
                         elif exception == 'Error':
                             if re.match(r'[0-1]+b$', lexeme.lower()):
                                 exception = 'TypeBin'
-                            if re.match(r'[0-9a-fA-F]+h$', lexeme.lower()):
+                            elif re.match(r'[0-7]+c$', lexeme.lower()):
+                                exception = 'TypeOctal'
+                            elif re.match(r'[0-9a-fA-F]+h$', lexeme.lower()):
                                 exception = 'TypeHex'
+                            elif re.match(r'^[0-9]+(.[0-9]+){0,1}[eE][+-][0-9]{1,}$', lexeme.lower()):
+                                exception = 'TypeReal'
 
-                        obj = Lexeme(line_number, lexeme, exception)
-                        obj_list.append(obj)
-                        lexeme = ''
-                        index_in_line = index_in_lexeme
-                        break
-
-                    elif is_limiters(line[index_in_lexeme]):
-                        if exception == '':
-                            exception = 'TypeInt'
                         obj = Lexeme(line_number, lexeme, exception)
                         obj_list.append(obj)
                         lexeme = ''
