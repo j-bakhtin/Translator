@@ -1,0 +1,11 @@
+1lex:Idval:writl
+1lex:Errorval:16B
+1lex:Commaval:,
+2lex:TypeRealfloat:12.3val:12.3
+2lex:Semicolonval:;
+3lex:Errorval:45abc
+4lex:Idval:abc45
+5lex:TypeIntint:15val:17c
+6lex:TypeIntint:12val:12
+6lex:Colonval::
+6lex:Colonval::

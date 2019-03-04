@@ -21,79 +21,83 @@ limiters = {
 
 # Зарезервированные операторы
 reserved_operators = {
-            '=': 'Cast',
-            '+': 'Add',
-            '-': 'Min',
-            '*': 'Mul',
-            '<': 'LT',
-            '>': 'GT'}
+            'cast': 'Cast',
+            'add': 'Add',
+            'minus': 'Min',
+            'mult': 'Mul',
+            'lt': 'LT',
+            'gt': 'GT',
+            'div': 'Div',
+            'mod': 'Mod',
+            'eq': 'EQ',
+            'ne': 'NE',
+            'le': 'LE',
+            'ge': 'GE',
+            'let': 'Let'}
 
-# Зарезервированные составные операторы
-reserved_composite_operators = {
-            '==': 'EQ',
-            '!=': 'NE',
-            '<': 'LT',
-            '>': 'GT',
-            '<=': 'LE',
-            '>=': 'GE',
-            ':=': 'Let'}
+# Управляющие символы
+control_words = {
+            'skip': 'Skip',
+            'space': 'Space',
+            'tab': 'Tab'}
 
 # Зарезервированные слова
-reserved_words = ['Div', 'Mod', 'Cast', 'Box', 'End', 'Int', 'Vector', 'TypeInt', 'TypeReal', 'Goto', 'Read',
-                  'Break', 'Tools', 'Proc', 'Call', 'If', 'Case', 'Then', 'Else', 'Of', 'Or', 'While', 'Loop', 'Do']
+reserved_words = ['Box', 'End', 'Int', 'Vector', 'TypeInt', 'TypeReal', 'Goto', 'Read', 'Var', 'Loop', 'Do',
+                  'Break', 'Tools', 'Proc', 'Call', 'If', 'Case', 'Then', 'Else', 'Of', 'Or', 'While']
 
 # Оставшиеся конструкции
-#             'Comment'
-#             'Id'
-#             'Label'
-#             'Var'
-#             'Skip
-#             'Space'
-#             'Tab'
+#             'Comment' +
+#             'Id' +
+#             'Label' +
+#             'Skip -
+#             'Space' -
+#             'Tab' -
 
 
-# Класс, описывающий лексему в формате <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>]
 class Lexeme:
+    # Класс, описывающий лексему в формате <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>]
 
-    def __init__(self, line_number, value, exception=None):
+    description = ''
+
+    def __init__(self, line_number, value, definite_lexeme=None):
         self.line_number = str(line_number)
         self.value = str(value)
-        self.exception = exception
+        self.definite_lexeme = definite_lexeme
 
     # -*- Полное описание лексемы -*-
     def get_description(self):
         description = self.line_number
 
-        if self.exception == 'Error':
+        if self.definite_lexeme == 'Error':
             description += 'lex:' + 'Error' + 'val:' + self.value
-        elif self.exception == 'Comment':
+        elif self.definite_lexeme == 'Comment':
             description += 'lex:' + 'Comment'
+        elif self.definite_lexeme == 'Label':
+            description += 'lex:' + 'Label' + 'val:' + self.value
         elif self.value in reserved_words:
             description += 'lex:' + self.value + 'val:' + self.value
         elif self.value in limiters.keys():
             description += 'lex:' + limiters.get(self.value) + 'val:' + self.value
         elif self.value in reserved_operators.keys():
             description += 'lex:' + reserved_operators.get(self.value) + 'val:' + self.value
-        elif self.value in reserved_composite_operators.keys():
-            description += 'lex:' + reserved_composite_operators.get(self.value) + 'val:' + self.value
+        elif self.value in control_words.keys():
+            description += 'lex:' + control_words.get(self.value) + 'val:' + self.value
 
-        elif self.exception == 'TypeInt':
+        elif self.definite_lexeme == 'TypeDec':
             description += 'lex:' + 'TypeInt' + type(int(self.value)).__name__ + \
                            ':' + self.value + 'val:' + self.value
-        elif self.exception == 'TypeReal':
+        elif self.definite_lexeme == 'TypeReal':
             description += 'lex:' + 'TypeReal' + type(float(self.value)).__name__ + \
                            ':' + self.value + 'val:' + self.value
-        # elif self.exception == 'TypeD':
-        #     description += 'lex:' + 'TypeD' + 'val:' + self.value
-        elif self.exception == 'TypeBin':
+        elif self.definite_lexeme == 'TypeBin':
             temp = int(re.sub(r'[bB]', '', self.value), 2)
             description += 'lex:' + 'TypeInt' + type(temp).__name__ + \
                            ':' + str(temp) + 'val:' + self.value
-        elif self.exception == 'TypeOctal':
+        elif self.definite_lexeme == 'TypeOctal':
             temp = int(re.sub(r'[cC]', '', self.value), 8)
             description += 'lex:' + 'TypeInt' + type(temp).__name__ + \
                            ':' + str(temp) + 'val:' + self.value
-        elif self.exception == 'TypeHex':
+        elif self.definite_lexeme == 'TypeHex':
             temp = int(re.sub(r'[hH]', '', self.value), 16)
             description += 'lex:' + 'TypeInt' + type(temp).__name__ + \
                            ':' + str(temp) + 'val:' + self.value
@@ -109,24 +113,9 @@ def is_letter(ch):
     return ('A' <= ch <= 'Z') or ('a' <= ch <= 'z') or ch == '_'
 
 
-# Определение принадлежности символа к классу двоичных цифр -*-
-def is_bin(ch):
-    return ch == '0' or ch == '1'
-
-
-# Определение принадлежности символа к классу восьмиричных цифр -*-
-def is_octal(ch):
-    return '0' <= ch <= '7'
-
-
 # Определение принадлежности символа к классу десятичных цифр -*-
 def is_digit(ch):
     return '0' <= ch <= '9'
-
-
-# Определение принадлежности символа к классу шестнадцатеричныхцифр -*-
-def is_hex(ch):
-    return ('0' <= ch <= '9') or ('A' <= ch <= 'F') or ('a' <= ch <= 'f')
 
 
 # Определение принадлежности символа к классу пропусков -*-
@@ -135,8 +124,8 @@ def is_skip(ch):
 
 
 # Определяет принадлежность к классу игнорируемых символов -*-
-def is_ignore(ch):
-    return chr(0) < ch < ' ' and ch != '\t' and ch != '\n' and ch != '\f'
+def is_control_characters(ch):
+    return ch in control_words
 
 
 def is_reserved_word(ch):
@@ -151,22 +140,22 @@ def is_limiters(ch):
     return ch in limiters
 
 
-# ===============================================================================
-# Лексический анализатор (Сканер)
-# Принимает фал с программой
-# Возвращает список сописанием лексем
-# Формат описания лексемы: <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>]
-# ===============================================================================
 def scanner(file_program):
+    # Лексический анализатор (Сканер)
+    # Принимает фйал с программой
+    # Возвращает список c описанием лексем
+    # Формат описания лексемы: <номер строки>lex:<лексема>[<тип>:<распознанное_значение>][val:<значение>]
+
     obj_list = []
 
     for line_number, line in enumerate(file_program):
+        line_number += 1
         index_in_line = 0
         line += '\0'
         lexeme = ''
 
         while index_in_line < len(line):
-            exception = ''
+            definite_lexeme = ''
 
             # Обработка отступов
             if is_skip(line[index_in_line]):
@@ -182,24 +171,15 @@ def scanner(file_program):
                 index_in_line += 1
                 continue
 
-            # Обработка зарезервированных операторов
-            if is_reserved_operators(line[index_in_line]):
-                lexeme = lexeme + line[index_in_line]
-                obj = Lexeme(line_number, lexeme)
-                obj_list.append(obj)
-                lexeme = ''
-                index_in_line += 1
-                continue
-
             # Обработка комментария
-            if line[index_in_line] == '/':
+            if line[index_in_line] is '/':
                 lexeme = lexeme + line[index_in_line]
                 index_in_lexeme = index_in_line + 1
 
-                if line[index_in_lexeme] == '/':
+                if line[index_in_lexeme] is '/':
                     lexeme = lexeme + line[index_in_line]
-                    exception = 'Comment'
-                    obj = Lexeme(line_number, lexeme, exception)
+                    definite_lexeme = 'Comment'
+                    obj = Lexeme(line_number, lexeme, definite_lexeme)
                     obj_list.append(obj)
                     index_in_line = len(line) - 1
                 else:
@@ -231,7 +211,12 @@ def scanner(file_program):
                         break
 
                     elif is_limiters(line[index_in_lexeme]):
-                        obj = Lexeme(line_number, lexeme)
+                        if line[index_in_lexeme] is ':':
+                            definite_lexeme = 'Label'
+                            lexeme = lexeme + line[index_in_lexeme]
+                            index_in_lexeme += 1
+
+                        obj = Lexeme(line_number, lexeme, definite_lexeme)
                         obj_list.append(obj)
                         lexeme = ''
                         index_in_line = index_in_lexeme
@@ -255,35 +240,34 @@ def scanner(file_program):
                         continue
 
                     elif is_letter(line[index_in_lexeme]):
-                        exception = 'Error'
+                        definite_lexeme = 'Error'
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
                         continue
 
                     elif re.match(r'[.+-]', line[index_in_lexeme]):
-                        if exception == '':
-                            exception = 'TypeReal'
-                        elif exception == 'TypeReal':
-                            exception = 'Error'
+                        if definite_lexeme is '':
+                            definite_lexeme = 'TypeReal'
+                        elif definite_lexeme is 'TypeReal':
+                            definite_lexeme = 'Error'
 
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
                         continue
 
                     elif is_skip(line[index_in_lexeme]) or is_limiters(line[index_in_lexeme]):
-                        if exception == '':
-                            exception = 'TypeInt'
-                        elif exception == 'Error':
+                        if definite_lexeme is '':
+                            definite_lexeme = 'TypeDec'
+                        elif definite_lexeme is 'Error':
                             if re.match(r'[0-1]+b$', lexeme.lower()):
-                                exception = 'TypeBin'
+                                definite_lexeme = 'TypeBin'
                             elif re.match(r'[0-7]+c$', lexeme.lower()):
-                                exception = 'TypeOctal'
+                                definite_lexeme = 'TypeOctal'
                             elif re.match(r'[0-9a-fA-F]+h$', lexeme.lower()):
-                                exception = 'TypeHex'
+                                definite_lexeme = 'TypeHex'
                             elif re.match(r'^[0-9]+(.[0-9]+){0,1}[eE][+-][0-9]{1,}$', lexeme.lower()):
-                                exception = 'TypeReal'
-
-                        obj = Lexeme(line_number, lexeme, exception)
+                                definite_lexeme = 'TypeReal'
+                        obj = Lexeme(line_number, lexeme, definite_lexeme)
                         obj_list.append(obj)
                         lexeme = ''
                         index_in_line = index_in_lexeme
@@ -294,7 +278,7 @@ def scanner(file_program):
                         index_in_line = index_in_lexeme
                         break
 
-                index_in_line += 1
+                # index_in_line += 1
                 continue
 
             index_in_line += 1
@@ -302,15 +286,24 @@ def scanner(file_program):
     return obj_list
 
 
-# -*- Главная функция -*-
 def main(fp, fl):
-    obj_list = []
 
-    with open(fp) as input_file_program:
+    with open(fp, 'r') as input_file_program:
         obj_list = scanner(input_file_program)
 
-    for obj in obj_list:
-        print(obj.get_description())
+    errors = False
+    with open(fl, 'w') as output_file_program:
+        for obj in obj_list:
+            line = obj.get_description()
+            output_file_program.write(line + '\n')
+
+            # if obj.definite_lexeme is 'Error':
+            # Раскомментировать и сделать отступ!
+            print(line)
+            errors = True
+
+    if not errors:
+        print('OK')
 
 
 if __name__ == '__main__':

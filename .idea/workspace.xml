@@ -4,6 +4,7 @@
     <list default="true" id="481e091b-3eb7-45e0-81ea-e193d38bb2b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lexeme.py" beforeDir="false" afterPath="$PROJECT_DIR$/lexeme.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tl.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tp.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lexeme.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="289" column="29" lean-forward="true" selection-start-line="289" selection-start-column="29" selection-end-line="289" selection-end-column="29" />
+            <state relative-caret-position="671">
+              <caret line="310" column="45" lean-forward="true" selection-start-line="310" selection-start-column="45" selection-end-line="310" selection-end-column="45" />
               <folding>
                 <element signature="e#55#79#0" expanded="true" />
               </folding>
@@ -34,11 +35,16 @@
       <find>Lexem</find>
       <find>lexem</find>
       <find>lexemee</find>
+      <find>exception</find>
+      <find>TypeReal</find>
+      <find>TypeInt</find>
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>lexeme</replace>
       <replace>Lexeme</replace>
+      <replace>definite_lexeme</replace>
+      <replace>TypeDec</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -62,7 +68,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -74,6 +79,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -106,6 +112,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11327714" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -130,8 +137,8 @@
     <entry file="file://$PROJECT_DIR$/lexeme.pyw" />
     <entry file="file://$PROJECT_DIR$/lexeme.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="289" column="29" lean-forward="true" selection-start-line="289" selection-start-column="29" selection-end-line="289" selection-end-column="29" />
+        <state relative-caret-position="671">
+          <caret line="310" column="45" lean-forward="true" selection-start-line="310" selection-start-column="45" selection-end-line="310" selection-end-column="45" />
           <folding>
             <element signature="e#55#79#0" expanded="true" />
           </folding>
