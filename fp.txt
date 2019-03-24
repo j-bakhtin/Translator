@@ -1,0 +1,29 @@
+writl 16B,
+12.3;
+hello%
+45abc
+abc45
+17c
+12!::
+if difit == 11bh:
+	
+10;
+07;
+02b;
+Box End RRB (01b);
+10bb;
+07Cc;
+7C;
+07c!;
+12Fh;
+12dhH;
+
+typeint
+
+13E
+12E-12
+12E+12.
+12E+12.5
+hello:
+
+
