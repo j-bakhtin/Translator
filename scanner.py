@@ -22,7 +22,7 @@ limiters = {
 # Зарезервированные операторы
 reserved_operators = {
             'cast': 'Cast',
-            'add': 'Add',
+            'plus': 'Add',
             'minus': 'Min',
             'mult': 'Mul',
             'lt': 'LT',
@@ -271,7 +271,11 @@ def scanner(file_program):
                                 definite_lexeme = 'TypeOctal'
                             elif re.match(r'[0-9a-fA-F]+h$', lexeme.lower()):
                                 definite_lexeme = 'TypeHex'
-                            elif re.match(r'^[0-9]+(.[0-9]+){0,1}[eE][+-][0-9]{1,}$', lexeme.lower()):
+                            elif re.match(r'^[0-9]+[eE][+-]?[0-9]+$', lexeme.lower()):
+                                definite_lexeme = 'TypeReal'
+                            elif re.match(r'^[0-9]+.[0-9]+[eE][+-]?[0-9]+$', lexeme.lower()):
+                                definite_lexeme = 'TypeReal'
+                            elif re.match(r'.[0-9]+[eE][+-]?[0-9]+$', lexeme.lower()):
                                 definite_lexeme = 'TypeReal'
                         obj = Lexeme(line_number, lexeme, definite_lexeme, error_description)
                         obj_list.append(obj)
@@ -288,6 +292,30 @@ def scanner(file_program):
 
                 # index_in_line += 1
                 continue
+
+            else:
+                lexeme = lexeme + line[index_in_line]
+                index_in_lexeme = index_in_line + 1
+
+                while index_in_lexeme < len(line):
+                    if is_skip(line[index_in_lexeme]) or is_limiters(line[index_in_lexeme]):
+                        if re.match(r'.[0-9]+[eE][+-]?[0-9]+$', lexeme.lower()):
+                            definite_lexeme = 'TypeReal'
+                            error_description = ':Invalid syntax.'
+                        else:
+                            definite_lexeme = 'Error'
+                            error_description = ':Invalid syntax. '
+
+                        obj = Lexeme(line_number, lexeme, definite_lexeme, error_description)
+                        obj_list.append(obj)
+                        lexeme = ''
+                        index_in_line = index_in_lexeme
+                        break
+
+                    lexeme = lexeme + line[index_in_lexeme]
+                    index_in_lexeme += 1
+                continue
+
             index_in_line += 1
 
     return obj_list

@@ -2,16 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="481e091b-3eb7-45e0-81ea-e193d38bb2b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fl.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fp.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profiler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restats.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scanner.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexeme.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tl.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/scanner/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/scanner/Analysis-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/scanner/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/scanner/EXE-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/scanner/PKG-00.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/scanner/PKG-00.pkg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/scanner/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/scanner/PKG-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/scanner/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/scanner/PYZ-00.pyz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/scanner/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/scanner/PYZ-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/scanner/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/scanner/base_library.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dist/fl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dist/fp.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/scanner.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/scanner.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fp.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scanner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="739">
-              <caret line="322" column="9" selection-start-line="322" selection-start-column="9" selection-end-line="322" selection-end-column="9" />
+            <state relative-caret-position="569">
+              <caret line="306" column="67" selection-start-line="306" selection-start-column="67" selection-end-line="306" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -93,7 +97,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -105,6 +108,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -187,6 +191,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11327714" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -224,8 +229,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scanner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="739">
-          <caret line="322" column="9" selection-start-line="322" selection-start-column="9" selection-end-line="322" selection-end-column="9" />
+        <state relative-caret-position="569">
+          <caret line="306" column="67" selection-start-line="306" selection-start-column="67" selection-end-line="306" selection-end-column="67" />
         </state>
       </provider>
     </entry>

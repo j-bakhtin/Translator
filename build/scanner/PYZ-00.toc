@@ -20,14 +20,6 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\tracemalloc.py',
    'PYMODULE'),
-  ('stringprep',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\stringprep.py',
-   'PYMODULE'),
-  ('typing',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\typing.py',
-   'PYMODULE'),
   ('__future__',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\__future__.py',
@@ -184,14 +176,6 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\platform.py',
    'PYMODULE'),
-  ('token',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\token.py',
-   'PYMODULE'),
-  ('tokenize',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\tokenize.py',
-   'PYMODULE'),
   ('urllib.parse',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\urllib\\parse.py',
@@ -199,10 +183,6 @@
   ('tempfile',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\tempfile.py',
-   'PYMODULE'),
-  ('subprocess',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\subprocess.py',
    'PYMODULE'),
   ('tty',
    'c:\\users\\jurij '
@@ -256,10 +236,6 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\uu.py',
    'PYMODULE'),
-  ('quopri',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\quopri.py',
-   'PYMODULE'),
   ('email.feedparser',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\email\\feedparser.py',
@@ -307,10 +283,6 @@
   ('email.charset',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\email\\charset.py',
-   'PYMODULE'),
-  ('base64',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\base64.py',
    'PYMODULE'),
   ('email._encoded_words',
    'c:\\users\\jurij '
@@ -364,17 +336,9 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\email\\message.py',
    'PYMODULE'),
-  ('bz2',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\bz2.py',
-   'PYMODULE'),
   ('lzma',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\lzma.py',
-   'PYMODULE'),
-  ('_compression',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\_compression.py',
    'PYMODULE'),
   ('gzip',
    'c:\\users\\jurij '
@@ -396,10 +360,6 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\shutil.py',
    'PYMODULE'),
-  ('selectors',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\selectors.py',
-   'PYMODULE'),
   ('socket',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\socket.py',
@@ -411,10 +371,6 @@
   ('pydoc',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\pydoc.py',
-   'PYMODULE'),
-  ('getopt',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\getopt.py',
    'PYMODULE'),
   ('pdb',
    'c:\\users\\jurij '
@@ -432,14 +388,6 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\string.py',
    'PYMODULE'),
-  ('_threading_local',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\_threading_local.py',
-   'PYMODULE'),
-  ('threading',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\threading.py',
-   'PYMODULE'),
   ('_compat_pickle',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\_compat_pickle.py',
@@ -456,10 +404,6 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\pprint.py',
    'PYMODULE'),
-  ('contextlib',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\contextlib.py',
-   'PYMODULE'),
   ('unittest.case',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\unittest\\case.py',
@@ -467,18 +411,6 @@
   ('unittest.suite',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\unittest\\suite.py',
-   'PYMODULE'),
-  ('stat',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\stat.py',
-   'PYMODULE'),
-  ('genericpath',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\genericpath.py',
-   'PYMODULE'),
-  ('posixpath',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\posixpath.py',
    'PYMODULE'),
   ('fnmatch',
    'c:\\users\\jurij '
@@ -496,10 +428,6 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\unittest\\main.py',
    'PYMODULE'),
-  ('signal',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\signal.py',
-   'PYMODULE'),
   ('unittest.signals',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\unittest\\signals.py',
@@ -507,6 +435,78 @@
   ('unittest',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\unittest\\__init__.py',
+   'PYMODULE'),
+  ('doctest',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\doctest.py',
+   'PYMODULE'),
+  ('typing',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\typing.py',
+   'PYMODULE'),
+  ('_compression',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\_compression.py',
+   'PYMODULE'),
+  ('bz2',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\bz2.py',
+   'PYMODULE'),
+  ('base64',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\base64.py',
+   'PYMODULE'),
+  ('stringprep',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\stringprep.py',
+   'PYMODULE'),
+  ('getopt',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\getopt.py',
+   'PYMODULE'),
+  ('quopri',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\quopri.py',
+   'PYMODULE'),
+  ('stat',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\stat.py',
+   'PYMODULE'),
+  ('genericpath',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\genericpath.py',
+   'PYMODULE'),
+  ('posixpath',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\posixpath.py',
+   'PYMODULE'),
+  ('signal',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\signal.py',
+   'PYMODULE'),
+  ('contextlib',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\contextlib.py',
+   'PYMODULE'),
+  ('_threading_local',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\_threading_local.py',
+   'PYMODULE'),
+  ('threading',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\threading.py',
+   'PYMODULE'),
+  ('selectors',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\selectors.py',
+   'PYMODULE'),
+  ('subprocess',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\subprocess.py',
+   'PYMODULE'),
+  ('token',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\token.py',
    'PYMODULE'),
   ('struct',
    'c:\\users\\jurij '
@@ -528,9 +528,9 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\argparse.py',
    'PYMODULE'),
-  ('doctest',
+  ('tokenize',
    'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\doctest.py',
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\tokenize.py',
    'PYMODULE'),
   ('os',
    'c:\\users\\jurij '

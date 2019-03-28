@@ -12,6 +12,7 @@
 7lex:Colonval::
 8lex:ifval:if
 8lex:Idval:difit
+8lex:Errorval:==
 8lex:TypeIntint:283val:11bh
 8lex:Colonval::
 10lex:TypeIntint:10val:10
@@ -40,7 +41,10 @@
 19lex:Errorval:12dhH
 19lex:Semicolonval:;
 21lex:typeintval:typeint
-23lex:Errorval:13E
-24lex:TypeRealfloat:12E-12val:12E-12
-25lex:Errorval:12E+12.
-26lex:Errorval:12E+12.5
+22lex:Labelval:hello:
+22lex:Errorval:...
+23lex:Errorval:...
+24lex:Errorval:13E
+25lex:TypeRealfloat:12E-12val:12E-12
+26lex:Errorval:12E+12.
+27lex:Errorval:12E+12.5
