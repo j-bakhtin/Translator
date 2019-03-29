@@ -50,6 +50,10 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_ssl.pyd',
    'EXTENSION'),
+  ('unicodedata',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
   ('pyexpat',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\pyexpat.pyd',
@@ -58,6 +62,10 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_hashlib.pyd',
    'EXTENSION'),
+  ('_bz2',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_bz2.pyd',
+   'EXTENSION'),
   ('_lzma',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_lzma.pyd',
@@ -65,14 +73,6 @@
   ('_socket',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_socket.pyd',
-   'EXTENSION'),
-  ('_bz2',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_bz2.pyd',
-   'EXTENSION'),
-  ('unicodedata',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\unicodedata.pyd',
    'EXTENSION'),
   ('select',
    'c:\\users\\jurij '
@@ -98,7 +98,7 @@
  [],
  False,
  False,
- 1553757105,
+ 1553774777,
  [('run.exe',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-32bit\\run.exe',

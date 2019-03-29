@@ -62,43 +62,48 @@ class Lexeme:
         description = self.line_number
 
         if self.definite_lexeme == 'Error':
-            description += 'lex:' + 'Error' + 'val:' + self.value
+            description += ' lex:' + 'Error' + ' val:' + self.value
             if self.error_description is None:
                 self.error_description = 'invalid syntax'
         elif self.definite_lexeme == 'Comment':
-            description += 'lex:' + 'Comment'
+            description += ' lex:' + 'Comment'
         elif self.definite_lexeme == 'Label':
-            description += 'lex:' + 'Label' + 'val:' + self.value
+            description +=  'lex:' + 'Label' + ' val:' + self.value
         elif self.value.lower() in [ x.lower() for x in reserved_words]:
-            description += 'lex:' + self.value + 'val:' + self.value
+            description += ' lex:' + self.value + ' val:' + self.value
         elif self.value.lower() in limiters.keys():
-            description += 'lex:' + limiters.get(self.value) + 'val:' + self.value
+            description += ' lex:' + limiters.get(self.value) + ' val:' + self.value
         elif self.value.lower() in reserved_operators.keys():
-            description += 'lex:' + reserved_operators.get(self.value) + 'val:' + self.value
+            description += ' lex:' + reserved_operators.get(self.value) + ' val:' + self.value
         elif self.value.lower() in control_words.keys():
-            description += 'lex:' + control_words.get(self.value) + 'val:' + self.value
+            description += ' lex:' + control_words.get(self.value) + ' val:' + self.value
 
         elif self.definite_lexeme == 'TypeDec':
-            description += 'lex:' + 'TypeInt' + type(int(self.value)).__name__ + \
-                           ':' + self.value + 'val:' + self.value
+            description += ' lex:' + 'TypeInt ' + 'Int' + \
+                           ':' + self.value + ' val:' + self.value
         elif self.definite_lexeme == 'TypeReal':
-            description += 'lex:' + 'TypeReal' + type(float(self.value)).__name__ + \
-                           ':' + self.value + 'val:' + self.value
+            if 3.4e-38 < float(self.value) < 3.4e+38:
+                description += ' lex:' + 'TypeReal ' + type(float(self.value)).__name__ + \
+                               ':' + self.value + ' val:' + self.value
+            else:
+                description += ' lex:' + 'Error' + ' val:' + self.value
+                self.definite_lexeme = 'Error'
+                self.error_description = ':Overflow'
         elif self.definite_lexeme == 'TypeBin':
             temp = int(re.sub(r'[bB]', '', self.value), 2)
-            description += 'lex:' + 'TypeInt' + type(temp).__name__ + \
-                           ':' + str(temp) + 'val:' + self.value
+            description += ' lex:' + 'TypeInt ' + type(temp).__name__ + \
+                           ':' + str(temp) + ' val:' + self.value
         elif self.definite_lexeme == 'TypeOctal':
             temp = int(re.sub(r'[cC]', '', self.value), 8)
-            description += 'lex:' + 'TypeInt' + type(temp).__name__ + \
-                           ':' + str(temp) + 'val:' + self.value
+            description += ' lex:' + 'TypeInt ' + type(temp).__name__ + \
+                           ':' + str(temp) + ' val:' + self.value
         elif self.definite_lexeme == 'TypeHex':
             temp = int(re.sub(r'[hH]', '', self.value), 16)
-            description += 'lex:' + 'TypeInt' + type(temp).__name__ + \
-                           ':' + str(temp) + 'val:' + self.value
+            description += ' lex:' + 'TypeInt ' + type(temp).__name__ + \
+                           ':' + str(temp) + ' val:' + self.value
 
         else:
-            description += 'lex:' + 'Id' + 'val:' + self.value
+            description += ' lex:' + 'Id' + ' val:' + self.value
 
         return description
 
@@ -247,6 +252,7 @@ def scanner(file_program):
                     elif is_letter(line[index_in_lexeme]):
                         definite_lexeme = 'Error'
                         error_description = ':Invalid syntax. Name can not begin with digit'
+
                         lexeme = lexeme + line[index_in_lexeme]
                         index_in_lexeme += 1
                         continue
@@ -269,13 +275,15 @@ def scanner(file_program):
                                 definite_lexeme = 'TypeBin'
                             elif re.match(r'[0-7]+c$', lexeme.lower()):
                                 definite_lexeme = 'TypeOctal'
+                            elif re.match(r'[0-9]+d$', lexeme.lower()):
+                                definite_lexeme = 'TypeDec'
                             elif re.match(r'[0-9a-fA-F]+h$', lexeme.lower()):
                                 definite_lexeme = 'TypeHex'
-                            elif re.match(r'^[0-9]+[eE][+-]?[0-9]+$', lexeme.lower()):
+                            elif re.match(r'^[0-9]+e[+-]?[0-9]+$', lexeme.lower()):
                                 definite_lexeme = 'TypeReal'
-                            elif re.match(r'^[0-9]+.[0-9]+[eE][+-]?[0-9]+$', lexeme.lower()):
+                            elif re.match(r'^[0-9]+\.[0-9]+e[+-]?[0-9]+$', lexeme.lower()):
                                 definite_lexeme = 'TypeReal'
-                            elif re.match(r'.[0-9]+[eE][+-]?[0-9]+$', lexeme.lower()):
+                            elif re.match(r'^[0-9]+\.e[+-]?[0-9]+$', lexeme.lower()):
                                 definite_lexeme = 'TypeReal'
                         obj = Lexeme(line_number, lexeme, definite_lexeme, error_description)
                         obj_list.append(obj)
@@ -299,9 +307,10 @@ def scanner(file_program):
 
                 while index_in_lexeme < len(line):
                     if is_skip(line[index_in_lexeme]) or is_limiters(line[index_in_lexeme]):
-                        if re.match(r'.[0-9]+[eE][+-]?[0-9]+$', lexeme.lower()):
+                        if re.match(r'^\.[0-9]+e[\+-]?[0-9]+$', lexeme.lower()):
                             definite_lexeme = 'TypeReal'
-                            error_description = ':Invalid syntax.'
+                        elif re.match(r'^.[0-9]+$', lexeme.lower()):
+                            definite_lexeme = 'TypeReal'
                         else:
                             definite_lexeme = 'Error'
                             error_description = ':Invalid syntax. '

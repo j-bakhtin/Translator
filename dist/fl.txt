@@ -1,50 +1,73 @@
-1lex:Idval:writl
-1lex:Errorval:16B
-1lex:Commaval:,
-2lex:TypeRealfloat:12.3val:12.3
-2lex:Semicolonval:;
-3lex:Errorval:hello%
-4lex:Errorval:45abc
-5lex:Idval:abc45
-6lex:TypeIntint:15val:17c
-7lex:Errorval:12!
-7lex:Colonval::
-7lex:Colonval::
-8lex:ifval:if
-8lex:Idval:difit
-8lex:Errorval:==
-8lex:TypeIntint:283val:11bh
-8lex:Colonval::
-10lex:TypeIntint:10val:10
-10lex:Semicolonval:;
-11lex:TypeIntint:07val:07
-11lex:Semicolonval:;
-12lex:Errorval:02b
-12lex:Semicolonval:;
-13lex:Boxval:Box
-13lex:Endval:End
-13lex:Idval:RRB
-13lex:LRBval:(
-13lex:TypeIntint:1val:01b
-13lex:RRBval:)
-13lex:Semicolonval:;
-14lex:Errorval:10bb
-14lex:Semicolonval:;
-15lex:Errorval:07Cc
-15lex:Semicolonval:;
-16lex:TypeIntint:7val:7C
-16lex:Semicolonval:;
-17lex:Errorval:07c!
-17lex:Semicolonval:;
-18lex:TypeIntint:303val:12Fh
-18lex:Semicolonval:;
-19lex:Errorval:12dhH
-19lex:Semicolonval:;
-21lex:typeintval:typeint
-22lex:Labelval:hello:
-22lex:Errorval:...
-23lex:Errorval:...
-24lex:Errorval:13E
-25lex:TypeRealfloat:12E-12val:12E-12
-26lex:Errorval:12E+12.
-27lex:Errorval:12E+12.5
+1 lex:Comment
+2 lex:Error val:10cc
+2 lex:Error val:10CC
+3 lex:Error val:10c10c
+3 lex:Error val:10C10C
+4 lex:Comment
+5 lex:Error val:1Cread
+6 lex:Error val:1cwrite
+7 lex:Comment
+8 lex:TypeReal float:1e1 val:1e1
+8 lex:TypeReal float:1. val:1.
+8 lex:TypeReal float:1.1 val:1.1
+8 lex:TypeReal float:1.e1 val:1.e1
+8 lex:TypeReal float:1.1e1 val:1.1e1
+8 lex:TypeReal float:.1 val:.1
+8 lex:TypeReal float:.1e1 val:.1e1
+9 lex:TypeReal float:55e22 val:55e22
+9 lex:TypeReal float:55. val:55.
+9 lex:TypeReal float:55.55 val:55.55
+9 lex:TypeReal float:55.e22 val:55.e22
+9 lex:TypeReal float:55.55e22 val:55.55e22
+9 lex:TypeReal float:.55 val:.55
+9 lex:TypeReal float:.55e22 val:.55e22
+10 lex:Comment
+11 lex:TypeReal float:011.1e1 val:011.1e1
+12 lex:TypeReal float:081.1e1 val:081.1e1
+13 lex:Comment
+14 lex:TypeReal float:1e+1 val:1e+1
+14 lex:TypeReal float:1e-1 val:1e-1
+14 lex:TypeReal float:1E+1 val:1E+1
+14 lex:TypeReal float:1E-1 val:1E-1
+15 lex:TypeReal float:2e+2 val:2e+2
+15 lex:TypeReal float:2e-2 val:2e-2
+15 lex:TypeReal float:2E+1 val:2E+1
+15 lex:TypeReal float:2E-2 val:2E-2
+16 lex:TypeReal float:3e+3 val:3e+3
+16 lex:TypeReal float:3e-3 val:3e-3
+16 lex:TypeReal float:3E+3 val:3E+3
+16 lex:TypeReal float:3E-3 val:3E-3
+17 lex:TypeReal float:4e+4 val:4e+4
+17 lex:TypeReal float:4e-4 val:4e-4
+17 lex:TypeReal float:4E+4 val:4E+4
+17 lex:TypeReal float:4E-4 val:4E-4
+18 lex:TypeReal float:5e+5 val:5e+5
+18 lex:TypeReal float:5e-5 val:5e-5
+18 lex:TypeReal float:5E+5 val:5E+5
+18 lex:TypeReal float:5E-5 val:5E-5
+19 lex:TypeReal float:6e+6 val:6e+6
+19 lex:TypeReal float:6e-6 val:6e-6
+19 lex:TypeReal float:6E+6 val:6E+6
+19 lex:TypeReal float:6E-6 val:6E-6
+20 lex:TypeReal float:7e+7 val:7e+7
+20 lex:TypeReal float:7e-7 val:7e-7
+20 lex:TypeReal float:7E+7 val:7E+7
+20 lex:TypeReal float:7E-7 val:7E-7
+21 lex:TypeReal float:8e+8 val:8e+8
+21 lex:TypeReal float:8e-8 val:8e-8
+21 lex:TypeReal float:8E+8 val:8E+8
+21 lex:TypeReal float:8E-8 val:8E-8
+22 lex:TypeReal float:9e+9 val:9e+9
+22 lex:TypeReal float:9e-9 val:9e-9
+22 lex:TypeReal float:9E+9 val:9E+9
+22 lex:TypeReal float:9E-9 val:9E-9
+25 lex:Error val:.
+25 lex:Error val:..
+26 lex:Error val:..1
+26 lex:Error val:1..
+27 lex:Error val:1..1
+28 lex:Error val:1ee1
+29 lex:Error val:.e10
+30 lex:Error val:11e11e11
+31 lex:Error val:11.11.11
+32 lex:Error val:1e--1
