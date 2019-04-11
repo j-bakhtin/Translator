@@ -1,124 +1,30 @@
-2 lex:Id val:writl
-2 lex:Error val:16B
+1 lex:Int val:Int
+1 lex:Id val:p1
+1 lex:LSB val:[
+1 lex:TypeInt Int:12 val:12
+1 lex:RSB val:]
+1 lex:Comma val:,
+1 lex:Id val:p2
+1 lex:LSB val:[
+1 lex:TypeInt Int:23 val:23
+1 lex:RSB val:]
+1 lex:Comma val:,
+1 lex:Id val:p3
+1 lex:Comma val:,
+1 lex:Id val:p4
+1 lex:LSB val:[
+1 lex:RSB val:]
+1 lex:Semicolon val:;
+2 lex:Real val:Real
+2 lex:Id val:p5
+2 lex:LSB val:[
+2 lex:TypeInt Int:12 val:12
+2 lex:RSB val:]
 2 lex:Comma val:,
-3 lex:TypeReal float:12.3 val:12.3
-3 lex:Semicolon val:;
-4 lex:Error val:hello%
-5 lex:Error val:45abc
-6 lex:Id val:abc45
-7 lex:TypeInt int:15 val:17c
-8 lex:Error val:12!
-8 lex:Colon val::
-8 lex:Colon val::
-9 lex:if val:if
-9 lex:Id val:difit
-9 lex:Error val:==
-9 lex:TypeInt int:283 val:11bh
-9 lex:Colon val::
-11 lex:TypeInt Int:10 val:10
-11 lex:Semicolon val:;
-12 lex:TypeInt Int:07 val:07
-12 lex:Semicolon val:;
-13 lex:Error val:02b
-13 lex:Semicolon val:;
-14 lex:Box val:Box
-14 lex:End val:End
-14 lex:Id val:RRB
-14 lex:LRB val:(
-14 lex:TypeInt int:1 val:01b
-14 lex:RRB val:)
-14 lex:Semicolon val:;
-15 lex:Error val:10bb
-15 lex:Semicolon val:;
-16 lex:Error val:07Cc
-16 lex:Semicolon val:;
-17 lex:TypeInt int:7 val:7C
-17 lex:Semicolon val:;
-18 lex:Error val:07c!
-18 lex:Semicolon val:;
-19 lex:TypeInt int:303 val:12Fh
-19 lex:Semicolon val:;
-20 lex:Error val:12dhH
-20 lex:Semicolon val:;
-22 lex:typeint val:typeint
-24 lex:Add val:plus
-26 lex:Error val:13E
-27 lex:TypeReal float:12E-12 val:12E-12
-28 lex:Error val:12E+12.
-29 lex:Error val:12E+12.5
-31 lex:Error val:...
-32 lex:Error val:...
-32 lex:Error val:...
-36 lex:Comment
-37 lex:Error val:10cc
-37 lex:Error val:10CC
-38 lex:Error val:10c10c
-38 lex:Error val:10C10C
-39 lex:Comment
-40 lex:Error val:1Cread
-41 lex:Error val:1cwrite
-42 lex:Comment
-43 lex:TypeReal float:1e1 val:1e1
-43 lex:TypeReal float:1. val:1.
-43 lex:TypeReal float:1.1 val:1.1
-43 lex:TypeReal float:1.e1 val:1.e1
-43 lex:TypeReal float:1.1e1 val:1.1e1
-43 lex:TypeReal float:.1 val:.1
-43 lex:TypeReal float:.1e1 val:.1e1
-44 lex:TypeReal float:55e22 val:55e22
-44 lex:TypeReal float:55. val:55.
-44 lex:TypeReal float:55.55 val:55.55
-44 lex:TypeReal float:55.e22 val:55.e22
-44 lex:TypeReal float:55.55e22 val:55.55e22
-44 lex:TypeReal float:.55 val:.55
-44 lex:TypeReal float:.55e22 val:.55e22
-45 lex:Comment
-46 lex:TypeReal float:011.1e1 val:011.1e1
-47 lex:TypeReal float:081.1e1 val:081.1e1
-48 lex:Comment
-49 lex:TypeReal float:1e+1 val:1e+1
-49 lex:TypeReal float:1e-1 val:1e-1
-49 lex:TypeReal float:1E+1 val:1E+1
-49 lex:TypeReal float:1E-1 val:1E-1
-50 lex:TypeReal float:2e+2 val:2e+2
-50 lex:TypeReal float:2e-2 val:2e-2
-50 lex:TypeReal float:2E+1 val:2E+1
-50 lex:TypeReal float:2E-2 val:2E-2
-51 lex:TypeReal float:3e+3 val:3e+3
-51 lex:TypeReal float:3e-3 val:3e-3
-51 lex:TypeReal float:3E+3 val:3E+3
-51 lex:TypeReal float:3E-3 val:3E-3
-52 lex:TypeReal float:4e+4 val:4e+4
-52 lex:TypeReal float:4e-4 val:4e-4
-52 lex:TypeReal float:4E+4 val:4E+4
-52 lex:TypeReal float:4E-4 val:4E-4
-53 lex:TypeReal float:5e+5 val:5e+5
-53 lex:TypeReal float:5e-5 val:5e-5
-53 lex:TypeReal float:5E+5 val:5E+5
-53 lex:TypeReal float:5E-5 val:5E-5
-54 lex:TypeReal float:6e+6 val:6e+6
-54 lex:TypeReal float:6e-6 val:6e-6
-54 lex:TypeReal float:6E+6 val:6E+6
-54 lex:TypeReal float:6E-6 val:6E-6
-55 lex:TypeReal float:7e+7 val:7e+7
-55 lex:TypeReal float:7e-7 val:7e-7
-55 lex:TypeReal float:7E+7 val:7E+7
-55 lex:TypeReal float:7E-7 val:7E-7
-56 lex:TypeReal float:8e+8 val:8e+8
-56 lex:TypeReal float:8e-8 val:8e-8
-56 lex:TypeReal float:8E+8 val:8E+8
-56 lex:TypeReal float:8E-8 val:8E-8
-57 lex:TypeReal float:9e+9 val:9e+9
-57 lex:TypeReal float:9e-9 val:9e-9
-57 lex:TypeReal float:9E+9 val:9E+9
-57 lex:TypeReal float:9E-9 val:9E-9
-60 lex:Error val:.
-60 lex:Error val:..
-61 lex:Error val:..1
-61 lex:Error val:1..
-62 lex:Error val:1..1
-63 lex:Error val:1ee1
-64 lex:Error val:.e10
-65 lex:Error val:11e11e11
-66 lex:Error val:11.11.11
-67 lex:Error val:1e--1
+2 lex:Id val:p6
+2 lex:LSB val:[
+2 lex:TypeInt Int:23 val:23
+2 lex:RSB val:]
+2 lex:Comma val:,
+2 lex:Id val:p7
+2 lex:Semicolon val:;

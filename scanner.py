@@ -42,7 +42,7 @@ control_words = {
             'tab': 'Tab'}
 
 # Зарезервированные слова
-reserved_words = ['Box', 'End', 'Int', 'Vector', 'TypeInt', 'TypeReal', 'Goto', 'Read', 'Var', 'Loop', 'Do',
+reserved_words = ['Box', 'End', 'Int', 'Real', 'Vector', 'TypeInt', 'TypeReal', 'Goto', 'Read', 'Var', 'Loop', 'Do',
                   'Break', 'Tools', 'Proc', 'Call', 'If', 'Case', 'Then', 'Else', 'Of', 'Or', 'While']
 
 
@@ -68,8 +68,8 @@ class Lexeme:
         elif self.definite_lexeme == 'Comment':
             description += ' lex:' + 'Comment'
         elif self.definite_lexeme == 'Label':
-            description +=  'lex:' + 'Label' + ' val:' + self.value
-        elif self.value.lower() in [ x.lower() for x in reserved_words]:
+            description += ' lex:' + 'Label' + ' val:' + self.value
+        elif self.value.lower() in [x.lower() for x in reserved_words]:
             description += ' lex:' + self.value + ' val:' + self.value
         elif self.value.lower() in limiters.keys():
             description += ' lex:' + limiters.get(self.value) + ' val:' + self.value
