@@ -13,18 +13,22 @@
 1 lex:Comma val:,
 1 lex:Id val:p4
 1 lex:LSB val:[
+1 lex:TypeInt Int:4 val:4
 1 lex:RSB val:]
 1 lex:Semicolon val:;
-2 lex:Real val:Real
-2 lex:Id val:p5
-2 lex:LSB val:[
-2 lex:TypeInt Int:12 val:12
-2 lex:RSB val:]
-2 lex:Comma val:,
-2 lex:Id val:p6
-2 lex:LSB val:[
-2 lex:TypeInt Int:23 val:23
-2 lex:RSB val:]
-2 lex:Comma val:,
-2 lex:Id val:p7
-2 lex:Semicolon val:;
+3 lex:proc val:proc
+3 lex:Id val:func1
+3 lex:int val:int
+3 lex:Id val:p1
+3 lex:Comma val:,
+3 lex:Id val:p1
+3 lex:Semicolon val:;
+3 lex:real val:real
+3 lex:Id val:p2
+3 lex:Semicolon val:;
+4 lex:Id val:start
+5 lex:Id val:write
+5 lex:Add val:plus
+5 lex:Id val:hello
+5 lex:Id val:hello
+6 lex:Id val:finish

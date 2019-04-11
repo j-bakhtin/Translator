@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<program>
+<dfn name='hello' length='12' type='Int'>
+<dfn type='Real'>
+<brief name='p2' length='1'>
+<brief name='p3' length='4'>
+</dfn>
+</program>

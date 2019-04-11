@@ -1,12 +1,24 @@
 <?xml version="1.0" ?>
 <program>
 <dfn type='Int'>
-<brief name='p2' length='23>
-<brief name='p3' length='1>
-<brief name='p4' length='100>
+<brief name='p2' length='23'>
+<brief name='p3' length='1'>
+<brief name='p4' length='4'>
 </dfn>
-<dfn type='Real'>
-<brief name='p6' length='23>
-<brief name='p7' length='1>
+<proc>
+<dfn type='int'>
+<brief name='p1' length='1'>
 </dfn>
+<dfn name='p2' length='1' type='real'>
+<compound>
+<write>
+<expr>
+<plus>
+<op kind='hello'>
+<op kind='hello'>
+</plus>
+</expr>
+</write>
+</compound>
+</proc>
 </program>

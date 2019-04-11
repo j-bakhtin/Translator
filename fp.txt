@@ -1,4 +1,6 @@
-Int p1[12], p2[23], p3, p4[];
-Real p5[12], p6[23], p7;
+Int p1[12], p2[23], p3, p4[4];
 
-
+proc func1 int p1, p1; real p2;
+start
+write plus hello hello
+finish

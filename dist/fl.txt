@@ -1,73 +1,19 @@
-1 lex:Comment
-2 lex:Error val:10cc
-2 lex:Error val:10CC
-3 lex:Error val:10c10c
-3 lex:Error val:10C10C
-4 lex:Comment
-5 lex:Error val:1Cread
-6 lex:Error val:1cwrite
-7 lex:Comment
-8 lex:TypeReal float:1e1 val:1e1
-8 lex:TypeReal float:1. val:1.
-8 lex:TypeReal float:1.1 val:1.1
-8 lex:TypeReal float:1.e1 val:1.e1
-8 lex:TypeReal float:1.1e1 val:1.1e1
-8 lex:TypeReal float:.1 val:.1
-8 lex:TypeReal float:.1e1 val:.1e1
-9 lex:TypeReal float:55e22 val:55e22
-9 lex:TypeReal float:55. val:55.
-9 lex:TypeReal float:55.55 val:55.55
-9 lex:TypeReal float:55.e22 val:55.e22
-9 lex:TypeReal float:55.55e22 val:55.55e22
-9 lex:TypeReal float:.55 val:.55
-9 lex:TypeReal float:.55e22 val:.55e22
-10 lex:Comment
-11 lex:TypeReal float:011.1e1 val:011.1e1
-12 lex:TypeReal float:081.1e1 val:081.1e1
-13 lex:Comment
-14 lex:TypeReal float:1e+1 val:1e+1
-14 lex:TypeReal float:1e-1 val:1e-1
-14 lex:TypeReal float:1E+1 val:1E+1
-14 lex:TypeReal float:1E-1 val:1E-1
-15 lex:TypeReal float:2e+2 val:2e+2
-15 lex:TypeReal float:2e-2 val:2e-2
-15 lex:TypeReal float:2E+1 val:2E+1
-15 lex:TypeReal float:2E-2 val:2E-2
-16 lex:TypeReal float:3e+3 val:3e+3
-16 lex:TypeReal float:3e-3 val:3e-3
-16 lex:TypeReal float:3E+3 val:3E+3
-16 lex:TypeReal float:3E-3 val:3E-3
-17 lex:TypeReal float:4e+4 val:4e+4
-17 lex:TypeReal float:4e-4 val:4e-4
-17 lex:TypeReal float:4E+4 val:4E+4
-17 lex:TypeReal float:4E-4 val:4E-4
-18 lex:TypeReal float:5e+5 val:5e+5
-18 lex:TypeReal float:5e-5 val:5e-5
-18 lex:TypeReal float:5E+5 val:5E+5
-18 lex:TypeReal float:5E-5 val:5E-5
-19 lex:TypeReal float:6e+6 val:6e+6
-19 lex:TypeReal float:6e-6 val:6e-6
-19 lex:TypeReal float:6E+6 val:6E+6
-19 lex:TypeReal float:6E-6 val:6E-6
-20 lex:TypeReal float:7e+7 val:7e+7
-20 lex:TypeReal float:7e-7 val:7e-7
-20 lex:TypeReal float:7E+7 val:7E+7
-20 lex:TypeReal float:7E-7 val:7E-7
-21 lex:TypeReal float:8e+8 val:8e+8
-21 lex:TypeReal float:8e-8 val:8e-8
-21 lex:TypeReal float:8E+8 val:8E+8
-21 lex:TypeReal float:8E-8 val:8E-8
-22 lex:TypeReal float:9e+9 val:9e+9
-22 lex:TypeReal float:9e-9 val:9e-9
-22 lex:TypeReal float:9E+9 val:9E+9
-22 lex:TypeReal float:9E-9 val:9E-9
-25 lex:Error val:.
-25 lex:Error val:..
-26 lex:Error val:..1
-26 lex:Error val:1..
-27 lex:Error val:1..1
-28 lex:Error val:1ee1
-29 lex:Error val:.e10
-30 lex:Error val:11e11e11
-31 lex:Error val:11.11.11
-32 lex:Error val:1e--1
+1 lex:Int val:Int
+1 lex:Id val:hello
+1 lex:LSB val:[
+1 lex:TypeInt Int:12 val:12
+1 lex:RSB val:]
+1 lex:Semicolon val:;
+2 lex:Real val:Real
+2 lex:Id val:p1
+2 lex:LSB val:[
+2 lex:TypeInt Int:0 val:0
+2 lex:RSB val:]
+2 lex:Comma val:,
+2 lex:Id val:p2
+2 lex:Comma val:,
+2 lex:Id val:p3
+2 lex:LSB val:[
+2 lex:TypeInt Int:4 val:4
+2 lex:RSB val:]
+2 lex:Semicolon val:;
