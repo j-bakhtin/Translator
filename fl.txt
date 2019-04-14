@@ -29,6 +29,49 @@
 4 lex:Id val:start
 5 lex:Id val:write
 5 lex:Add val:plus
+5 lex:Min val:minus
+5 lex:TypeInt Int:23 val:23
+5 lex:LRB val:(
+5 lex:Min val:minus
 5 lex:Id val:hello
+5 lex:RRB val:)
+5 lex:LRB val:(
+5 lex:Min val:minus
+5 lex:TypeInt Int:12 val:12
+5 lex:RRB val:)
+5 lex:Comma val:,
+5 lex:Tab val:tab
+5 lex:Comma val:,
+5 lex:Add val:plus
+5 lex:Min val:minus
+5 lex:TypeInt Int:23 val:23
+5 lex:LRB val:(
+5 lex:Min val:minus
 5 lex:Id val:hello
+5 lex:RRB val:)
+5 lex:LRB val:(
+5 lex:Min val:minus
+5 lex:TypeInt Int:12 val:12
+5 lex:RRB val:)
+5 lex:Semicolon val:;
 6 lex:Id val:finish
+8 lex:Id val:write
+8 lex:Add val:plus
+8 lex:Id val:hello
+8 lex:Id val:hello
+8 lex:Semicolon val:;
+9 lex:read val:read
+9 lex:Id val:p1
+9 lex:Comma val:,
+9 lex:Id val:p2
+9 lex:LSB val:[
+9 lex:TypeInt Int:23 val:23
+9 lex:RSB val:]
+9 lex:Comma val:,
+9 lex:Id val:p3
+9 lex:Comma val:,
+9 lex:Id val:p4
+9 lex:LSB val:[
+9 lex:Id val:hello
+9 lex:RSB val:]
+9 lex:Semicolon val:;

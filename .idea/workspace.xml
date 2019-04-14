@@ -4,8 +4,6 @@
     <list default="true" id="481e091b-3eb7-45e0-81ea-e193d38bb2b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/XMLTree.txt" beforeDir="false" afterPath="$PROJECT_DIR$/XMLTree.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/fl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dist/fl.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/fp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dist/fp.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fl.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fp.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/parser.py" afterDir="false" />
@@ -45,8 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="180" column="51" selection-start-line="180" selection-start-column="51" selection-end-line="180" selection-end-column="51" />
+            <state relative-caret-position="-1086">
+              <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
               <folding>
                 <element signature="e#55#79#0" expanded="true" />
               </folding>
@@ -200,6 +198,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08271865" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -247,8 +246,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="180" column="51" selection-start-line="180" selection-start-column="51" selection-end-line="180" selection-end-column="51" />
+        <state relative-caret-position="-1086">
+          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
           <folding>
             <element signature="e#55#79#0" expanded="true" />
           </folding>

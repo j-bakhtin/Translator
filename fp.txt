@@ -2,5 +2,8 @@ Int p1[12], p2[23], p3, p4[4];
 
 proc func1 int p1, p1; real p2;
 start
-write plus hello hello
+write plus minus 23 (minus hello) (minus 12), tab, plus minus 23 (minus hello) (minus 12);
 finish
+
+write plus hello hello;
+read p1, p2[23], p3, p4[hello];
