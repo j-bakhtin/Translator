@@ -1,69 +1,30 @@
 <?xml version="1.0" ?>
 <program>
-<dfn type='Int'>
-<brief name='p1' length='12'>
-<brief name='p2' length='23'>
-<brief name='p3' length='1'>
-<brief name='p4' length='4'>
-</dfn>
-<proc>
-<dfn type='int'>
-<brief name='p1' length='1'>
-<brief name='p1' length='1'>
-</dfn>
-<dfn name='p2' length='1' type='real'>
-<compound>
-<write>
-<expr>
-<plus>
-<op>
-<expr>
-<minus>
-<op kind='23'>
-<minus>
-<op kind='hello'>
-</minus>
-</minus>
-</expr>
-</op>
-<minus>
-<op kind='12'>
-</minus>
-</plus>
-</expr>
-<qualifier kind='tab'>
-<expr>
-<plus>
-<op>
-<expr>
-<minus>
-<op kind='23'>
-<minus>
-<op kind='hello'>
-</minus>
-</minus>
-</expr>
-</op>
-<minus>
-<op kind='12'>
-</minus>
-</plus>
-</expr>
-</write>
-</compound>
-</proc>
-<write>
-<expr>
-<plus>
-<op kind='hello'>
-<op kind='hello'>
-</plus>
-</expr>
-</write>
-<read>
-<var name='p1'>
-<var name='p2' ndex='23'>
-<var name='p3'>
-<var name='p4' ndex='hello'>
-</read>
+	<write>
+		<expr>
+			<op kind='hello1'>
+		</expr>
+	</write>
+	<write>
+		<expr>
+			<minus>
+				<op kind='hello2'>
+			</minus>
+		</expr>
+	</write>
+	<write>
+		<expr>
+			<mult>
+				<op>
+					<expr>
+						<mult>
+							<op kind='hello'>
+							<op kind='hello'>
+						</mult>
+					</expr>
+				</op>
+				<op kind='hello2'>
+			</mult>
+		</expr>
+	</write>
 </program>
