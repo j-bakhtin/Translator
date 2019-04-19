@@ -50,6 +50,10 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_ssl.pyd',
    'EXTENSION'),
+  ('unicodedata',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
   ('pyexpat',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\pyexpat.pyd',
@@ -57,6 +61,10 @@
   ('_hashlib',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_hashlib.pyd',
+   'EXTENSION'),
+  ('_bz2',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_bz2.pyd',
    'EXTENSION'),
   ('_lzma',
    'c:\\users\\jurij '
@@ -66,25 +74,17 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_socket.pyd',
    'EXTENSION'),
-  ('unicodedata',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\unicodedata.pyd',
-   'EXTENSION'),
-  ('_bz2',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_bz2.pyd',
-   'EXTENSION'),
   ('select',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\select.pyd',
    'EXTENSION'),
-  ('libssl-1_1.dll',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\libssl-1_1.dll',
-   'BINARY'),
   ('libcrypto-1_1.dll',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\libcrypto-1_1.dll',
+   'BINARY'),
+  ('libssl-1_1.dll',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\libssl-1_1.dll',
    'BINARY'),
   ('base_library.zip',
    'C:\\Users\\Jurij Bakhtin\\Documents\\Study\\Course 3\\Semestr '
@@ -98,7 +98,7 @@
  [],
  False,
  False,
- 1554973730,
+ 1555583118,
  [('run.exe',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-32bit\\run.exe',

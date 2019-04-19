@@ -82,7 +82,7 @@ class Lexeme:
             description += ' lex:' + 'TypeInt ' + 'Int' + \
                            ':' + self.value + ' val:' + self.value
         elif self.definite_lexeme == 'TypeReal':
-            if 3.4e-38 < float(self.value) < 3.4e+38:
+            if -3.4e+38 < float(self.value) < 3.4e+38:
                 description += ' lex:' + 'TypeReal ' + type(float(self.value)).__name__ + \
                                ':' + self.value + ' val:' + self.value
             else:
@@ -238,7 +238,7 @@ def scanner(file_program):
                         continue
                 continue
 
-            if is_digit(line[index_in_line]):
+            if is_digit(line[index_in_line]) or line[index_in_line] == '-':
                 lexeme = lexeme + line[index_in_line]
                 index_in_lexeme = index_in_line + 1
 

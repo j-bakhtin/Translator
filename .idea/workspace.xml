@@ -4,9 +4,24 @@
     <list default="true" id="481e091b-3eb7-45e0-81ea-e193d38bb2b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/XMLTree.txt" beforeDir="false" afterPath="$PROJECT_DIR$/XMLTree.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/parser/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/Analysis-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/parser/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/EXE-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/parser/PKG-00.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/PKG-00.pkg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/parser/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/PKG-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/parser/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/PYZ-00.pyz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/parser/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/PYZ-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/parser/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/base_library.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/parser/warn-parser.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/warn-parser.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/parser/xref-parser.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/xref-parser.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/XMLTree.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dist/XMLTree.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dist/fl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dist/fp.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/parser.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parser.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/scanner (1).exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/fl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fl.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fp.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scanner.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +34,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/profiler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
+            <state relative-caret-position="119">
               <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -31,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scanner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="45" column="102" lean-forward="true" selection-start-line="44" selection-end-line="45" selection-end-column="102" />
+            <state relative-caret-position="467">
+              <caret line="343" column="44" selection-start-line="343" selection-start-column="39" selection-end-line="343" selection-end-column="44" />
               <folding>
                 <element signature="e#55#79#0" expanded="true" />
               </folding>
@@ -43,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="358" column="45" lean-forward="true" selection-start-line="358" selection-start-column="45" selection-end-line="358" selection-end-column="45" />
+            <state relative-caret-position="434">
+              <caret line="596" column="18" selection-start-line="596" selection-start-column="18" selection-end-line="596" selection-end-column="18" />
               <folding>
                 <element signature="e#55#79#0" expanded="true" />
               </folding>
@@ -70,6 +85,16 @@
       <find>exception</find>
       <find>TypeReal</find>
       <find>TypeInt</find>
+      <find>Overflow</find>
+      <find>переменная</find>
+      <find>print(tokens</find>
+      <find>е ра</find>
+      <find>Invalid syntax</find>
+      <find>Label</find>
+      <find>clause</find>
+      <find>Ожидае</find>
+      <find>','</find>
+      <find>Ожидаеться ','</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -104,6 +129,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -115,7 +141,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -198,7 +223,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08271865" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -219,14 +243,32 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/parser.py</url>
+          <line>635</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lexeme.pyw" />
     <entry file="file://$PROJECT_DIR$/profile.py" />
     <entry file="file://$PROJECT_DIR$/profile_test.py" />
     <entry file="file://$PROJECT_DIR$/lexeme.py" />
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/1492025543/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="488" column="4" selection-start-line="488" selection-start-column="4" selection-end-line="488" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/profiler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
+        <state relative-caret-position="119">
           <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
@@ -236,8 +278,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scanner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="45" column="102" lean-forward="true" selection-start-line="44" selection-end-line="45" selection-end-column="102" />
+        <state relative-caret-position="467">
+          <caret line="343" column="44" selection-start-line="343" selection-start-column="39" selection-end-line="343" selection-end-column="44" />
           <folding>
             <element signature="e#55#79#0" expanded="true" />
           </folding>
@@ -246,8 +288,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="358" column="45" lean-forward="true" selection-start-line="358" selection-start-column="45" selection-end-line="358" selection-end-column="45" />
+        <state relative-caret-position="434">
+          <caret line="596" column="18" selection-start-line="596" selection-start-column="18" selection-end-line="596" selection-end-column="18" />
           <folding>
             <element signature="e#55#79#0" expanded="true" />
           </folding>

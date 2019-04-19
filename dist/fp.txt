@@ -1,3 +1,1 @@
-Int hello[12];
-
-proc func int p1, p2;
+-1.0

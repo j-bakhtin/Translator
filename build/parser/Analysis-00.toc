@@ -28,13 +28,17 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\datetime.py',
    'PYMODULE'),
-  ('typing',
+  ('stringprep',
    'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\typing.py',
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\stringprep.py',
    'PYMODULE'),
   ('_py_abc',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\_py_abc.py',
+   'PYMODULE'),
+  ('typing',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\typing.py',
    'PYMODULE'),
   ('fnmatch',
    'c:\\users\\jurij '
@@ -260,6 +264,10 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\uu.py',
    'PYMODULE'),
+  ('quopri',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\quopri.py',
+   'PYMODULE'),
   ('email.feedparser',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\email\\feedparser.py',
@@ -307,6 +315,10 @@
   ('email.charset',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\email\\charset.py',
+   'PYMODULE'),
+  ('base64',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\base64.py',
    'PYMODULE'),
   ('email._encoded_words',
    'c:\\users\\jurij '
@@ -360,9 +372,17 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\email\\message.py',
    'PYMODULE'),
+  ('bz2',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\bz2.py',
+   'PYMODULE'),
   ('lzma',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\lzma.py',
+   'PYMODULE'),
+  ('_compression',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\_compression.py',
    'PYMODULE'),
   ('gzip',
    'c:\\users\\jurij '
@@ -395,6 +415,10 @@
   ('pydoc',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\pydoc.py',
+   'PYMODULE'),
+  ('getopt',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\getopt.py',
    'PYMODULE'),
   ('pdb',
    'c:\\users\\jurij '
@@ -460,42 +484,6 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\tracemalloc.py',
    'PYMODULE'),
-  ('token',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\token.py',
-   'PYMODULE'),
-  ('textwrap',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\textwrap.py',
-   'PYMODULE'),
-  ('argparse',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\argparse.py',
-   'PYMODULE'),
-  ('tokenize',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\tokenize.py',
-   'PYMODULE'),
-  ('stringprep',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\stringprep.py',
-   'PYMODULE'),
-  ('_compression',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\_compression.py',
-   'PYMODULE'),
-  ('bz2',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\bz2.py',
-   'PYMODULE'),
-  ('quopri',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\quopri.py',
-   'PYMODULE'),
-  ('struct',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\struct.py',
-   'PYMODULE'),
   ('stat',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\stat.py',
@@ -532,17 +520,29 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\subprocess.py',
    'PYMODULE'),
+  ('token',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\token.py',
+   'PYMODULE'),
+  ('struct',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\struct.py',
+   'PYMODULE'),
   ('gettext',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\gettext.py',
    'PYMODULE'),
-  ('getopt',
+  ('textwrap',
    'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\getopt.py',
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\textwrap.py',
    'PYMODULE'),
-  ('base64',
+  ('argparse',
    'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\base64.py',
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\argparse.py',
+   'PYMODULE'),
+  ('tokenize',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\lib\\tokenize.py',
    'PYMODULE'),
   ('copy',
    'c:\\users\\jurij '
@@ -568,6 +568,10 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_ssl.pyd',
    'EXTENSION'),
+  ('unicodedata',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
   ('pyexpat',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\pyexpat.pyd',
@@ -575,6 +579,10 @@
   ('_hashlib',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_hashlib.pyd',
+   'EXTENSION'),
+  ('_bz2',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_bz2.pyd',
    'EXTENSION'),
   ('_lzma',
    'c:\\users\\jurij '
@@ -584,25 +592,17 @@
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_socket.pyd',
    'EXTENSION'),
-  ('unicodedata',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\unicodedata.pyd',
-   'EXTENSION'),
-  ('_bz2',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\_bz2.pyd',
-   'EXTENSION'),
   ('select',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\select.pyd',
    'EXTENSION'),
-  ('libssl-1_1.dll',
-   'c:\\users\\jurij '
-   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\libssl-1_1.dll',
-   'BINARY'),
   ('libcrypto-1_1.dll',
    'c:\\users\\jurij '
    'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\libcrypto-1_1.dll',
+   'BINARY'),
+  ('libssl-1_1.dll',
+   'c:\\users\\jurij '
+   'bakhtin\\appdata\\local\\programs\\python\\python37-32\\DLLs\\libssl-1_1.dll',
    'BINARY')],
  [],
  [],

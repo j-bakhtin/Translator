@@ -25,7 +25,7 @@ def dfn(tokens_list, i):
         i += 1
 
         if not re.search(r'lex:Id', tokens_list[i].get_description()):
-            print('Error. Line ' + str(tokens_list[i].line_number) + '. После TYPE должно идти имя переменной')
+            print('Error:' + str(tokens_list[i].line_number) + ':После TYPE должно идти имя переменной')
             sys.exit(0)
         name = tokens_list[i].value
         i += 1
@@ -33,14 +33,14 @@ def dfn(tokens_list, i):
         if tokens_list[i].value is '[':
             i += 1
             if not re.search(r'lex:TypeInt', tokens_list[i].get_description()):
-                print('Error. Line ' + str(tokens_list[i].line_number) +
-                      ". После открывающей скобки должно идти число тапа INT")
+                print('Error:' + str(tokens_list[i].line_number) +
+                      ":После открывающей скобки должно идти число тапа INT")
                 sys.exit(0)
             length = tokens_list[i].value
             i += 1
 
             if tokens_list[i].value is not ']':
-                print('Error. Line ' + str(tokens_list[i].line_number) + ". Не обнаружена закрывающая скобка")
+                print('Error:' + str(tokens_list[i].line_number) + ":Не обнаружена закрывающая скобка")
                 sys.exit(0)
             i += 1
 
@@ -53,12 +53,8 @@ def dfn(tokens_list, i):
             else:
                 break
 
-        if tokens_list[i].value is not ';':
-            print('Error. Line ' + str(tokens_list[i].line_number) + ". Неожиданный символ")
-            sys.exit(0)
-        i += 1
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
     if not have_brief:
@@ -81,7 +77,7 @@ def brief(tokens_list, i):
         i += 1
 
         if not re.search(r'lex:Id', tokens_list[i].get_description()):
-            print('Error. Line ' + str(tokens_list[i].line_number) + '. Ожиидается имя переменной')
+            print('Error:' + str(tokens_list[i].line_number) + ':Ожиидается имя переменной')
             sys.exit(0)
         name = tokens_list[i].value
         i += 1
@@ -89,19 +85,19 @@ def brief(tokens_list, i):
         if tokens_list[i].value is '[':
             i += 1
             if not re.search(r'lex:TypeInt', tokens_list[i].get_description()):
-                print('Error. Line ' + str(
-                    tokens_list[i].line_number) + ". После открывающей скобки должно идти число тапа INT")
+                print('Error:' + str(
+                    tokens_list[i].line_number) + ":После открывающей скобки должно идти число тапа INT")
                 sys.exit(0)
             length = tokens_list[i].value
             i += 1
 
             if tokens_list[i].value is not ']':
-                print('Error. Line ' + str(tokens_list[i].line_number) + ". Не обнаружена закрывающая скобка")
+                print('Error:' + str(tokens_list[i].line_number) + ":Не обнаружена закрывающая скобка")
                 sys.exit(0)
             i += 1
 
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
     xml_tree = "<brief name='" + name + "' length='" + str(length) + "'>\n"
@@ -117,7 +113,7 @@ def proc(tokens_list, i):
         i += 1
 
         if not re.search(r'lex:Id', tokens_list[i].get_description()):
-            print('Error. Line ' + str(tokens_list[i].line_number) + '. Процедура должна иметь имя')
+            print('Error:' + str(tokens_list[i].line_number) + ':Процедура должна иметь имя')
             sys.exit(0)
         # Должна иметь имя?
         i += 1
@@ -126,27 +122,52 @@ def proc(tokens_list, i):
             if tokens_list[i].value.lower() == 'int' or tokens_list[i].value.lower() == 'real':
                 xml_subtree, i = dfn(tokens_list, i)  # Описание
                 xml_tree += xml_subtree
+
+                if tokens_list[i].value is not ';':
+                    print('Error:' + str(tokens_list[i].line_number) + ":Ожидался символ ';'")
+                    sys.exit(0)
+                i += 1
             else:
                 break
 
+
         if not tokens_list[i].value.lower() == 'start':
-            print('Error. Line ' + str(tokens_list[i].line_number) + '. Процедура должна иметь тело')
+            print('Error:' + str(tokens_list[i].line_number) + ':Процедура должна иметь тело')
             sys.exit(0)
         else:
             xml_subtree, i = compound(tokens_list, i)  # Составной оператор
             xml_tree += xml_subtree
 
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
     xml_tree += "</proc>\n"
     return xml_tree, i
 
 
+def label_clause(tokens_list, i):
+    xml_tree = "<clause>\n"
+    try:
+        if re.search(r'lex:Label', tokens_list[i].get_description()):
+            xml_tree += "<label name='" + tokens_list[i].value.replace(':','') + "'>"
+            i += 1
+            xml_subtree, i = clause(tokens_list, i)  # Оператор после метки
+            xml_tree += xml_subtree
+        else:
+            xml_subtree, i = clause(tokens_list, i)  # Оператор
+            xml_tree += xml_subtree
+    except IndexError:
+        print('Error:' + str(tokens_list[i - 1].line_number) + ':Некорректный конец программы')
+        sys.exit(0)
+
+    xml_tree += "</clause>\n"
+    return xml_tree, i
+
 # функции операторов
 def clause(tokens_list, i):  # Оператор
     xml_tree = ''
+
     try:
         if tokens_list[i].value.lower() == 'write':
             xml_subtree, i = write(tokens_list, i)  # оператор write
@@ -157,67 +178,182 @@ def clause(tokens_list, i):  # Оператор
         elif tokens_list[i].value.lower() == 'goto':
             xml_subtree, i = goto(tokens_list, i)  # оператор read
             xml_tree += xml_subtree
+        elif tokens_list[i].value.lower() == 'cast':
+            xml_subtree, i = cast(tokens_list, i)  # оператор read
+            xml_tree += xml_subtree
+        elif tokens_list[i].value.lower() == 'while':
+            xml_subtree, i = pwhile(tokens_list, i)  # оператор read
+            xml_tree += xml_subtree
         elif tokens_list[i].value.lower() == 'break':
             xml_subtree = "</break>\n"
             xml_tree += xml_subtree
-            i += 1
-            if tokens_list[i].value is not ';':
-                print('Error. Line ' + str(tokens_list[i].line_number) + ". Ожидается точка с запятой")
-                sys.exit(0)
             i += 1
             return xml_tree, i
         elif tokens_list[i].value.lower() == 'let':
             xml_subtree, i = assign(tokens_list, i)  # оператор assign
             xml_tree += xml_subtree
-        else:
+        elif tokens_list[i].value.lower() == 'if':
+            xml_subtree, i = pif(tokens_list, i)  # оператор if
+            xml_tree += xml_subtree
             return xml_tree, i
+        elif  tokens_list[i].value.lower() == 'start':
+            xml_subtree, i = compound(tokens_list, i)  # Составной оператор
+            xml_tree += xml_subtree
+            return xml_tree, i
+        else:
+            pass
 
-        if tokens_list[i].value is not ';':
-            print('Error. Line ' + str(tokens_list[i].line_number) + ". Ожидается точка с запятой")
-            sys.exit(0)
-        i += 1
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
     return xml_tree, i
-
 
 def compound(tokens_list, i):  # Составной оператор
     xml_tree = "<compound>\n"
 
     try:
         if tokens_list[i].value != 'start':
-            print('Error. Line ' + str(tokens_list[i].line_number) + '. Составной оператор должне '
+            print('Error:' + str(tokens_list[i].line_number) + ':Составной оператор должне '
                                                                      'начинаться со слова "start"')
             sys.exit(0)
         i += 1
 
-        if tokens_list[i].value != 'finish':
+        if tokens_list[i].value != 'stop':
             while i < len(tokens_list):
                 temp = i
-                xml_subtree, i = clause(tokens_list, i)  # Оператор
+                xml_subtree, i = label_clause(tokens_list, i)  # Оператор
                 xml_tree += xml_subtree
-                if temp == i and tokens_list[i].value != 'finish':
-                    print('Error. Line ' + str(tokens_list[i].line_number) + '. Нераспознанная конструкция')
+                if tokens_list[i].value != ';':
+                    print('Error:' + str(tokens_list[i].line_number) + ":Ожидаеться ';'")
                     sys.exit(0)
-                else:
+                i += 1
+
+                if temp == i or tokens_list[i].value != 'stop':
+                    print('Error:' + str(tokens_list[i].line_number) + ':Нераспознанная конструкция')
+                    sys.exit(0)
+
+                if tokens_list[i].value == 'stop':
+                    i += 1
                     break
         else:
-            print('Error. Line ' + str(tokens_list[i].line_number) + '. Составной оператор не должен быть пустым')
+            print('Error:' + str(tokens_list[i].line_number) + ':Составной оператор не должен быть пустым')
             sys.exit(0)
 
-        if tokens_list[i].value != 'finish':
-            print('Error. Line ' + str(tokens_list[i].line_number) +
-                  '. Составной оператор должне оканчиваться на "finish"')
+    except IndexError:
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
+        sys.exit(0)
+
+    xml_tree += "</compound>\n"
+    return xml_tree, i
+
+
+def pwhile(tokens_list, i):  # Оператор While
+    xml_tree = "<while>\n"
+
+    try:
+        i += 1
+        xml_subtree, i = expressions(tokens_list, i)  # Выражение
+        xml_tree += xml_subtree
+
+        if tokens_list[i].value != 'do':
+            print('Error:' + str(tokens_list[i].line_number) + ":Ожидаеться 'do'")
+            sys.exit(0)
+        else:
+            i += 1
+            if re.search(r'lex:Label', tokens_list[i].get_description()):
+                print('Error:' + str(tokens_list[i].line_number) + ':Нераспознанная конструкция')
+                sys.exit(0)
+            else:
+                xml_subtree, i = label_clause(tokens_list, i)  # Оператор
+                xml_tree += xml_subtree
+
+    except IndexError:
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
+        sys.exit(0)
+
+    xml_tree += "</while>\n"
+    return xml_tree, i
+
+
+def cast(tokens_list, i):  # Оператор cast
+    xml_tree = "<cast>\n"
+
+    try:
+        i += 1
+        xml_subtree, i = var(tokens_list, i)  # Оператор
+        xml_tree += xml_subtree
+
+        if tokens_list[i].value != ',':
+            print('Error:' + str(tokens_list[i].line_number) + ":Ожидаеться ','")
+            sys.exit(0)
+        else:
+            i += 1
+            xml_subtree, i = var(tokens_list, i)  # Оператор
+            xml_tree += xml_subtree
+
+    except IndexError:
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
+        sys.exit(0)
+
+    xml_tree += "</cast>\n"
+    return xml_tree, i
+
+
+def pif(tokens_list, i):  # Оператор if
+    xml_tree = "<if>\n"
+
+    try:
+        i += 1
+
+        xml_subtree, i = expressions(tokens_list, i)  # Выражение
+        xml_tree += xml_subtree
+
+        if not tokens_list[i].value == 'then':
+            print('Error:' + str(tokens_list[i].line_number) + ":Ожидался обяязательное слово 'then'")
+            sys.exit(0)
+        i += 1
+
+
+        xml_subtree, i = label_clause(tokens_list, i)  # Выражеине
+        xml_tree += xml_subtree
+
+        while i < len(tokens_list):
+            if tokens_list[i].value == ';':
+                i += 1
+                xml_subtree, i = label_clause(tokens_list, i)  # Выражеине
+                xml_tree += xml_subtree
+            else:
+                break
+
+        if tokens_list[i].value == 'else':
+            xml_tree += "</if>\n"
+            xml_tree += "<else>\n"
+            i += 1
+            xml_subtree, i = label_clause(tokens_list, i)  # Выражеине
+            xml_tree += xml_subtree
+
+            while i < len(tokens_list):
+                if tokens_list[i].value == ';':
+                    i += 1
+                    xml_subtree, i = label_clause(tokens_list, i)  # Выражеине
+                    xml_tree += xml_subtree
+                else:
+                    xml_tree += "</else>\n"
+
+                    break
+
+
+        if not tokens_list[i].value == 'end':
+            print('Error:' + str(tokens_list[i].line_number) + ":Ожидался обяязательное слово 'end'")
             sys.exit(0)
         i += 1
 
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
-    xml_tree += "</compound>\n"
+    xml_tree += "</if>\n"
     return xml_tree, i
 
 
@@ -231,7 +367,7 @@ def assign(tokens_list, i):  # Оператор Assign
         xml_tree += xml_subtree
 
         if not tokens_list[i].value == ',':
-            print('Error. Line ' + str(tokens_list[i].line_number) + ". Ожидался символ ','")
+            print('Error:' + str(tokens_list[i].line_number) + ":Ожидался символ ','")
             sys.exit(0)
         i += 1
 
@@ -239,7 +375,7 @@ def assign(tokens_list, i):  # Оператор Assign
         xml_tree += xml_subtree
 
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
     xml_tree += "</assign>\n"
@@ -250,13 +386,13 @@ def goto(tokens_list, i):  # Оператор goto
     try:
         i += 1
         if not re.search(r'lex:Id', tokens_list[i].get_description()):
-            print('Error. Line ' + str(tokens_list[i].line_number) + '. Ожидаеться имя метки')
+            print('Error:' + str(tokens_list[i].line_number) + ':Ожидаеться имя метки')
             sys.exit(0)
         label = tokens_list[i].value
         i += 1
 
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
     xml_tree = "<goto label='" + label + "'>\n"
@@ -268,7 +404,7 @@ def write(tokens_list, i):  # Оператор Write
 
     try:
         i += 1
-        while True:
+        while i < len(tokens_list):
             if tokens_list[i].value in qualifier:
                 xml_tree += "<qualifier kind='" + tokens_list[i].value + "'>\n"
                 i += 1
@@ -276,13 +412,16 @@ def write(tokens_list, i):  # Оператор Write
                 xml_subtree, i = expressions(tokens_list, i)  # Выражеине
                 xml_tree += xml_subtree
 
-            if tokens_list[i].value != ',':
-                break
+            if i < len(tokens_list):
+                if tokens_list[i].value != ',':
+                    break
+                else:
+                    i += 1
             else:
-                i += 1
+                break
 
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
     xml_tree += "</write>\n"
@@ -296,7 +435,7 @@ def read(tokens_list, i):  # Оператор Read
         i += 1
 
         if not re.search(r'lex:Id', tokens_list[i].get_description()):
-            print('Error. Line ' + str(tokens_list[i].line_number) + '. Ожидалось имя переменной')
+            print('Error:' + str(tokens_list[i].line_number) + ':Ожидалось имя переменной')
             sys.exit(0)
         else:
             xml_subtree, i = var(tokens_list, i)  # Переменная
@@ -311,7 +450,7 @@ def read(tokens_list, i):  # Оператор Read
                 break
 
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
     xml_tree += "</read>\n"
@@ -323,26 +462,26 @@ def var(tokens_list, i):  # Переменная
 
     try:
         if not re.search(r'lex:Id', tokens_list[i].get_description()):
-            print('Error. Line ' + str(tokens_list[i].line_number) + '. Ожидалось имя переменной')
+            print('Error:' + str(tokens_list[i].line_number) + ':Ожидалось имя переменной')
             sys.exit(0)
         name = tokens_list[i].value
         i += 1
+        if  i < len(tokens_list):
+            if tokens_list[i].value is '[':
+                i += 1
 
-        if tokens_list[i].value is '[':
-            i += 1
+                if not re.search(r'lex:TypeInt', tokens_list[i].get_description()) and \
+                    not re.search(r'lex:Id', tokens_list[i].get_description()):
+                    print('Error:' + str(tokens_list[i].line_number) +
+                          ":После открывающей скобки должно идти число тапа INT")
+                    sys.exit(0)
+                index = tokens_list[i].value
+                i += 1
 
-            if not re.search(r'lex:TypeInt', tokens_list[i].get_description()) and \
-                not re.search(r'lex:Id', tokens_list[i].get_description()):
-                print('Error. Line ' + str(tokens_list[i].line_number) +
-                      ". После открывающей скобки должно идти число тапа INT")
-                sys.exit(0)
-            index = tokens_list[i].value
-            i += 1
-
-            if tokens_list[i].value is not ']':
-                print('Error. Line ' + str(tokens_list[i].line_number) + ". Не обнаружена закрывающая скобка")
-                sys.exit(0)
-            i += 1
+                if tokens_list[i].value is not ']':
+                    print('Error:' + str(tokens_list[i].line_number) + ':Не обнаружена закрывающая скобка')
+                    sys.exit(0)
+                i += 1
 
         if index != 0:
             xml_tree = "<var name='" + name + "' index='" + index + "'>\n"
@@ -350,7 +489,7 @@ def var(tokens_list, i):  # Переменная
             xml_tree = "<var name='" + name + "'>\n"
 
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
     return xml_tree, i
@@ -381,7 +520,7 @@ def expressions(tokens_list, i):  # выражеине
                 xml_tree += xml_subtree
                 xml_tree += "</" + 'minus' + ">\n"
             if tokens_list[i].value != ')':
-                print('Error. Line ' + str(tokens_list[i].line_number) + '. Ожидаеться закрывающая скобка')
+                print('Error:' + str(tokens_list[i].line_number) + ':Ожидаеться закрывающая скобка')
                 sys.exit(0)
             i += 1
         else:
@@ -389,7 +528,7 @@ def expressions(tokens_list, i):  # выражеине
             xml_tree += xml_subtree
 
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
     xml_tree += "</expr>\n"
@@ -415,12 +554,11 @@ def operand(tokens_list, i):  # Операнд
             i += 1
             return xml_tree, i
         else:
-            print(tokens_list[i].value)
-            print('Error. Line ' + str(tokens_list[i].line_number) + '. Ожидался операнд')
+            print('Error:' + str(tokens_list[i].line_number) + ':Ожидался операнд')
             sys.exit(0)
 
     except IndexError:
-        print('Error. Некорректный конец программы')
+        print('Error:' + str(tokens_list[i-1].line_number) + ':Некорректный конец программы')
         sys.exit(0)
 
     xml_tree += "<op>\n" + xml_subtree
@@ -433,24 +571,34 @@ def parser(tokens_list):
     xml_tree = '<?xml version="1.0" ?>' + '\n'
     xml_tree += '<program>' + '\n'
 
-    i = 0
-    while i < len(tokens_list):
-        if tokens_list[i].value.lower() == 'int' or tokens_list[i].value.lower() == 'real':
-            xml_subtree, i = dfn(tokens_list, i)  # Описание
-            xml_tree += xml_subtree
-        elif tokens_list[i].value.lower() == 'proc':
-            xml_subtree, i = proc(tokens_list, i)  # процедура
-            xml_tree += xml_subtree
-        else:
-            temp = i
-            xml_subtree, i = clause(tokens_list, i)  # Оператор
-            xml_tree += xml_subtree
-            if temp == i:
-                if re.search(r'lex:Comment', tokens_list[i].get_description()):
-                    i += 1
-                else:
-                    print('Error. Line ' + str(tokens_list[i].line_number) + '. Не распознанная конструкция')
-                    sys.exit(0)
+    try:
+        i = 0
+        while i < len(tokens_list):
+            if tokens_list[i].value.lower() == 'int' or tokens_list[i].value.lower() == 'real':
+                xml_subtree, i = dfn(tokens_list, i)  # Описание
+                xml_tree += xml_subtree
+            elif tokens_list[i].value.lower() == 'proc':
+                xml_subtree, i = proc(tokens_list, i)  # процедура
+                xml_tree += xml_subtree
+            else:
+                temp = i
+                xml_subtree, i = label_clause(tokens_list, i)  # Оператор
+                xml_tree += xml_subtree
+                if temp == i:
+                    if tokens_list[i].value.lower() == ';':
+                        pass
+                    else:
+                        print('Error:' + str(tokens_list[i].line_number) + ':Нераспознанная конструкция')
+                        sys.exit(0)
+
+            if tokens_list[i].value.lower()!= ';':
+                print('Error:' + str(tokens_list[i].line_number) + ":Ожидался символ ';'")
+                sys.exit(0)
+            i += 1
+
+    except IndexError:
+        print('Error:' + str(tokens_list[i - 1].line_number) + ':Некорректный конец программы')
+        sys.exit(0)
 
     xml_tree += '</program>'
     return xml_tree
@@ -472,6 +620,10 @@ def main(file_programm, file_tokens, file_xml_tree):
 
                 print(line)
                 errors = True
+
+            if token.definite_lexeme is 'Comment':
+                tokens_list.remove(token)
+
 
     # Сегмент синтаксического анализа
     if not errors:
