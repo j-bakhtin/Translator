@@ -1,97 +1,18 @@
 <?xml version="1.0" ?>
 <program>
-<dfn name='i' length='1' type='int'>
-<dfn name='arr' length='5' type='int'>
-<dfn name='r' length='1' type='real'>
-<clause>
-<label name='Label'></clause>
-<clause>
-</clause>
-<proc>
+<dfn name='h' length='1' type='int'/>
+<proc name='Hello'>
+<dfn name='i' length='1' type='int'/>
 <compound>
-<clause>
-</clause>
-</compound>
-</proc>
-<proc>
-<dfn name='i' length='1' type='int'>
-<compound>
-<clause>
-</clause>
-</compound>
-</proc>
-<proc>
-<dfn name='i' length='1' type='int'>
-<dfn name='j' length='1' type='int'>
-<compound>
-<clause>
-</clause>
-</compound>
-</proc>
-<proc>
-<dfn name='r' length='1' type='real'>
-<compound>
-<clause>
-</clause>
-</compound>
-</proc>
-<proc>
-<dfn name='iArr' length='5' type='int'>
-<compound>
-<clause>
-</clause>
-</compound>
-</proc>
-<clause>
-<while>
-<expr>
-<op kind='hello'>
-</expr>
 <clause>
 <write>
 <expr>
-<op kind='hello'>
+<op>
+<var name='i'/>
+</op>
 </expr>
 </write>
 </clause>
-</while>
-</clause>
-<clause>
-<if>
-<expr>
-<op kind='hello'>
-</expr>
-<clause>
-<write>
-<expr>
-<op kind='hello'>
-</expr>
-</write>
-</clause>
-<clause>
-<write>
-<expr>
-<op kind='hello'>
-</expr>
-</write>
-</clause>
-</if>
-<else>
-<clause>
-<write>
-<expr>
-<op kind='hello'>
-</expr>
-</write>
-</clause>
-<clause>
-<write>
-<expr>
-<op kind='hello'>
-</expr>
-</write>
-</clause>
-</else>
-</if>
-</clause>
+</compound>
+</proc>
 </program>

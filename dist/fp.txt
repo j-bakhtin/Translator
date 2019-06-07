@@ -1,1 +1,18 @@
--1.0
+int i;
+int arr[5];
+real r;
+
+proc Foo start ; stop;
+proc Foo1 int i; start ; stop;
+proc Foo2 int i;int j; start ; stop;
+proc FooR real r; start ; stop;
+proc FooArr int iArr[5]; start ; stop;
+
+Foo( );
+Foo1( i );
+Foo1( arr[1] );
+Foo1( arr[i] );
+Foo2( i, arr[1] );
+Foo2( arr[2], i );
+FooR( r );
+FooArr( arr );

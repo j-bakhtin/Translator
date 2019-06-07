@@ -1,0 +1,15 @@
+<table>
+  <entry length="1" name="i" ref="3" type="int" />
+  <entry length="5" name="arr" ref="5" type="int" />
+  <entry length="1" name="r" ref="2" type="real" />
+  <entry name="Foo" ref="1" type="proc" />
+  <entry name="Foo1" ref="1" type="proc" />
+  <entry length="1" name="i" ref="3" type="int" />
+  <entry name="Foo2" ref="1" type="proc" />
+  <entry length="1" name="i" ref="3" type="int" />
+  <entry length="1" name="j" ref="1" type="int" />
+  <entry name="FooR" ref="1" type="proc" />
+  <entry length="1" name="r" ref="2" type="real" />
+  <entry name="FooArr" ref="1" type="proc" />
+  <entry length="5" name="iArr" ref="1" type="int" />
+</table>

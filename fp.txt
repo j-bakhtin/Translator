@@ -1,21 +1,5 @@
-int i;
-int arr[5];
-real r;
-Label:;//comment
-;
-proc Foo start ; stop;
-proc Foo1 int i; start ; stop;
-proc Foo2 int i;int j; start ; stop;
-proc FooR real r; start ; stop;
-proc FooArr int iArr[5]; start ; stop;
-
-while hello do
-	write hello;
-
-if hello then
-write hello;
-write hello
-else
-write hello;
-write hello
-end;
+int h;
+proc Hello int i;
+start
+	write i;
+stop;

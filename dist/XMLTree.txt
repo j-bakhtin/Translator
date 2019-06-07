@@ -1,4 +1,72 @@
 <?xml version="1.0" ?>
 <program>
-<dfn name='hello' length='12' type='Int'>
+<dfn name='i' length='1' type='int'/>
+<dfn name='arr' length='5' type='int'/>
+<dfn name='r' length='1' type='real'/>
+<proc name='Foo'>
+<compound>
+<clause>
+</clause>
+</compound>
+</proc>
+<proc name='Foo1'>
+<dfn name='i' length='1' type='int'/>
+<compound>
+<clause>
+</clause>
+</compound>
+</proc>
+<proc name='Foo2'>
+<dfn name='i' length='1' type='int'/>
+<dfn name='j' length='1' type='int'/>
+<compound>
+<clause>
+</clause>
+</compound>
+</proc>
+<proc name='FooR'>
+<dfn name='r' length='1' type='real'/>
+<compound>
+<clause>
+</clause>
+</compound>
+</proc>
+<proc name='FooArr'>
+<dfn name='iArr' length='5' type='int'/>
+<compound>
+<clause>
+</clause>
+</compound>
+</proc>
+<clause>
+<call name='Foo'/>
+</clause>
+<clause>
+<call name='Foo1'/>
+<var name='i'/>
+</clause>
+<clause>
+<call name='Foo1'/>
+<var name='arr' index='1'/>
+</clause>
+<clause>
+<call name='Foo1'/>
+<var name='arr' index='i'/>
+</clause>
+<clause>
+<call name='Foo2'/>
+<var name='i'/>
+</clause>
+<clause>
+<call name='Foo2'/>
+<var name='arr' index='2'/>
+</clause>
+<clause>
+<call name='FooR'/>
+<var name='r'/>
+</clause>
+<clause>
+<call name='FooArr'/>
+<var name='arr'/>
+</clause>
 </program>

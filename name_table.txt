@@ -1,0 +1,6 @@
+<table>
+  <entry type="int" name="h" length="1" ref="1"/>
+  <entry name="Hello" ref="1" type="proc">
+    <entry type="int" name="i" length="1" ref="1"/>
+  </entry>
+</table>

@@ -2,26 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="481e091b-3eb7-45e0-81ea-e193d38bb2b0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/name_table_xml_builder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LexAnalysis.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/XMLTree.txt" beforeDir="false" afterPath="$PROJECT_DIR$/XMLTree.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/parser/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/Analysis-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/parser/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/EXE-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/parser/PKG-00.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/PKG-00.pkg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/parser/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/PKG-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/parser/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/PYZ-00.pyz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/parser/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/PYZ-00.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/parser/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/base_library.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/parser/warn-parser.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/warn-parser.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/parser/xref-parser.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/parser/xref-parser.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/XMLTree.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dist/XMLTree.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/fl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dist/fl.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/fp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dist/fp.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/parser.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/parser.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/scanner (1).exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/fl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fl.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fp.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scanner.py" beforeDir="false" afterPath="$PROJECT_DIR$/scanner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/syntax_tree_xml_builder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,12 +30,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/profiler.py">
+        <entry file="file://$PROJECT_DIR$/../../../../../../Изучение Python/XPath/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
+            <state relative-caret-position="357">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="29" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#44#78#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -46,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scanner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="343" column="44" selection-start-line="343" selection-start-column="39" selection-end-line="343" selection-end-column="44" />
+            <state relative-caret-position="119">
+              <caret line="7" column="9" lean-forward="true" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
               <folding>
                 <element signature="e#55#79#0" expanded="true" />
               </folding>
@@ -55,11 +53,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/parser.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/syntax_tree_xml_builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="596" column="18" selection-start-line="596" selection-start-column="18" selection-end-line="596" selection-end-column="18" />
+            <state relative-caret-position="841">
+              <caret line="103" column="22" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
+              <folding>
+                <element signature="e#54#78#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/name_table_xml_builder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="467">
+              <caret line="74" column="61" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="61" />
               <folding>
                 <element signature="e#55#79#0" expanded="true" />
               </folding>
@@ -78,8 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>`</find>
-      <find>Lexem</find>
       <find>lexem</find>
       <find>lexemee</find>
       <find>exception</find>
@@ -87,7 +95,6 @@
       <find>TypeInt</find>
       <find>Overflow</find>
       <find>переменная</find>
-      <find>print(tokens</find>
       <find>е ра</find>
       <find>Invalid syntax</find>
       <find>Label</find>
@@ -95,6 +102,22 @@
       <find>Ожидае</find>
       <find>','</find>
       <find>Ожидаеться ','</find>
+      <find>Ожидаеться</find>
+      <find>Let</find>
+      <find>reserved_words</find>
+      <find>is</find>
+      <find>is not</find>
+      <find>let</find>
+      <find>sear</find>
+      <find>print(tokens</find>
+      <find>break</find>
+      <find>def</find>
+      <find>имя</find>
+      <find>Comment</find>
+      <find>OP</find>
+      <find>write</find>
+      <find>var</find>
+      <find>proc</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -115,6 +138,11 @@
         <option value="$PROJECT_DIR$/profiler.py" />
         <option value="$PROJECT_DIR$/scanner.py" />
         <option value="$PROJECT_DIR$/parser.py" />
+        <option value="$PROJECT_DIR$/nameTable.py" />
+        <option value="$PROJECT_DIR$/BildXMLNameTable.py" />
+        <option value="$PROJECT_DIR$/bild_xml_nameTable_tree.py" />
+        <option value="$PROJECT_DIR$/syntax_tree_xml_builder.py" />
+        <option value="$PROJECT_DIR$/name_table_xml_builder.py" />
       </list>
     </option>
   </component>
@@ -144,7 +172,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../Изучение Python/XPath/main.py" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -242,17 +270,25 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/parser.py</url>
-          <line>635</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08271865" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Python Console" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/lexeme.pyw" />
@@ -276,20 +312,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/name_table.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/scanner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="343" column="44" selection-start-line="343" selection-start-column="39" selection-end-line="343" selection-end-column="44" />
+        <state relative-caret-position="119">
+          <caret line="7" column="9" lean-forward="true" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
           <folding>
             <element signature="e#55#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser.py">
+    <entry file="file://$PROJECT_DIR$/../../../../../../Изучение Python/XPath/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="596" column="18" selection-start-line="596" selection-start-column="18" selection-end-line="596" selection-end-column="18" />
+        <state relative-caret-position="357">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="29" />
+          <folding>
+            <element signature="e#44#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/syntax_tree_xml_builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="103" column="22" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
+          <folding>
+            <element signature="e#54#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/name_table_xml_builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="74" column="61" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="61" />
           <folding>
             <element signature="e#55#79#0" expanded="true" />
           </folding>

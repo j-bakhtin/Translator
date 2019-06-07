@@ -1,0 +1,18 @@
+<program>
+<dfn name='i' length='1' type='int'>
+<proc name='FooArr'>
+<dfn name='iArr' length='5' type='int'>
+<compound>
+<clause>
+<write>
+<expr>
+<op kind='i'>
+</expr>
+</write>
+</clause>
+</compound>
+</proc>
+<clause>
+<call name='Hello'>
+</clause>
+</program>

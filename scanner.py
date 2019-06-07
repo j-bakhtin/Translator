@@ -43,7 +43,7 @@ control_words = {
 
 # Зарезервированные слова
 reserved_words = ['Box', 'End', 'Int', 'Real', 'Vector', 'TypeInt', 'TypeReal', 'Goto', 'Read', 'Var', 'Loop', 'Do',
-                  'Break', 'Tools', 'Proc', 'Call', 'If', 'Case', 'Then', 'Else', 'Of', 'Or', 'While']
+                  'Break', 'Tools', 'Proc', 'Call', 'If', 'Case', 'Then', 'Else', 'Of', 'Or', 'While', 'Write']
 
 
 class Lexeme:
@@ -53,7 +53,9 @@ class Lexeme:
 
     def __init__(self, line_number, value, definite_lexeme=None, error_description=None):
         self.line_number = str(line_number)
+        self.lexeme = None
         self.value = str(value)
+        self.real_value = None
         self.definite_lexeme = definite_lexeme
         self.error_description = error_description
 
@@ -62,48 +64,66 @@ class Lexeme:
         description = self.line_number
 
         if self.definite_lexeme == 'Error':
-            description += ' lex:' + 'Error' + ' val:' + self.value
+            self.lexeme = 'Error'
+            description += ' lex:' + self.lexeme + ' val:' + self.value
             if self.error_description is None:
                 self.error_description = 'invalid syntax'
         elif self.definite_lexeme == 'Comment':
-            description += ' lex:' + 'Comment'
+            self.lexeme = 'Comment'
+            description += ' lex:' + self.lexeme
         elif self.definite_lexeme == 'Label':
-            description += ' lex:' + 'Label' + ' val:' + self.value
+            self.lexeme = 'Label'
+            description += ' lex:' + self.lexeme + ' val:' + self.value
         elif self.value.lower() in [x.lower() for x in reserved_words]:
-            description += ' lex:' + self.value + ' val:' + self.value
+            self.lexeme = self.value.title()
+            description += ' lex:' + self.lexeme + ' val:' + self.value
         elif self.value.lower() in limiters.keys():
-            description += ' lex:' + limiters.get(self.value) + ' val:' + self.value
+            self.lexeme = limiters.get(self.value)
+            description += ' lex:' + self.lexeme + ' val:' + self.value
         elif self.value.lower() in reserved_operators.keys():
-            description += ' lex:' + reserved_operators.get(self.value) + ' val:' + self.value
+            self.lexeme = reserved_operators.get(self.value)
+            description += ' lex:' + self.lexeme + ' val:' + self.value
         elif self.value.lower() in control_words.keys():
-            description += ' lex:' + control_words.get(self.value) + ' val:' + self.value
-
+            self.lexeme = control_words.get(self.value)
+            description += ' lex:' + self.lexeme + ' val:' + self.value
         elif self.definite_lexeme == 'TypeDec':
-            description += ' lex:' + 'TypeInt ' + 'Int' + \
-                           ':' + self.value + ' val:' + self.value
+            self.lexeme = 'TypeInt'
+            if re.search(r'[dD]', self.value):
+                self.real_value = int(re.sub(r'[dD]', '', self.value),10)
+            else:
+                self.real_value = self.value
+            description += ' lex:' + self.lexeme + ' Int' + \
+                           ':' + str(self.real_value) + ' val:' + self.value
         elif self.definite_lexeme == 'TypeReal':
             if -3.4e+38 < float(self.value) < 3.4e+38:
-                description += ' lex:' + 'TypeReal ' + type(float(self.value)).__name__ + \
-                               ':' + self.value + ' val:' + self.value
+                self.lexeme = 'TypeReal'
+                self.real_value = self.value
+                description += ' lex:' + self.lexeme + ' ' + type(float(self.value)).__name__ + \
+                               ':' + self.real_value + ' val:' + self.value
             else:
-                description += ' lex:' + 'Error' + ' val:' + self.value
+                self.lexeme = 'Error'
+                description += ' lex:' + self.lexeme + ' val:' + self.value
                 self.definite_lexeme = 'Error'
                 self.error_description = ':Overflow'
         elif self.definite_lexeme == 'TypeBin':
-            temp = int(re.sub(r'[bB]', '', self.value), 2)
-            description += ' lex:' + 'TypeInt ' + type(temp).__name__ + \
-                           ':' + str(temp) + ' val:' + self.value
+            self.lexeme = 'TypeInt'
+            self.real_value = int(re.sub(r'[bB]', '', self.value), 2)
+            description += ' lex:' + self.lexeme + ' ' + type(self.real_value).__name__ + \
+                           ':' + str(self.real_value) + ' val:' + self.value
         elif self.definite_lexeme == 'TypeOctal':
-            temp = int(re.sub(r'[cC]', '', self.value), 8)
-            description += ' lex:' + 'TypeInt ' + type(temp).__name__ + \
-                           ':' + str(temp) + ' val:' + self.value
+            self.lexeme = 'TypeInt'
+            self.real_value = int(re.sub(r'[cC]', '', self.value), 8)
+            description += ' lex:' + self.lexeme + ' ' + type(self.real_value).__name__ + \
+                           ':' + str(self.real_value) + ' val:' + self.value
         elif self.definite_lexeme == 'TypeHex':
-            temp = int(re.sub(r'[hH]', '', self.value), 16)
-            description += ' lex:' + 'TypeInt ' + type(temp).__name__ + \
-                           ':' + str(temp) + ' val:' + self.value
+            self.lexeme = 'TypeInt'
+            self.real_value = int(re.sub(r'[hH]', '', self.value), 16)
+            description += ' lex:' + self.lexeme + ' ' + type(self.real_value).__name__ + \
+                           ':' + str(self.real_value) + ' val:' + self.value
 
         else:
-            description += ' lex:' + 'Id' + ' val:' + self.value
+            self.lexeme = 'Id'
+            description += ' lex:' + self.lexeme + ' val:' + self.value
 
         return description
 
@@ -358,4 +378,4 @@ if __name__ == '__main__':
         else:
             print("Error. Input file is empty")
     else:
-        print('Error. Parameters are incorrect')
+        print('Error:Parameters are incorrect')
